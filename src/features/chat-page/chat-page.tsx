@@ -28,12 +28,23 @@ export const ChatPage: FC<ChatPageProps> = (props) => {
   const { data: session } = useSession();
 
   useEffect(() => {
+    console.log(props.extensions);
+
     chatStore.initChatSession({
       chatThread: props.chatThread,
       messages: props.messages,
       userName: session?.user?.name!,
     });
   }, [props.messages, session?.user?.name, props.chatThread]);
+
+  useEffect(() => {
+    let isBingExtension = props.extensions.some(
+      (ext) => ext.name === "Bing Search"
+    );
+    console.log(isBingExtension);
+    isBingExtension &&
+      chatStore.AddExtensionToChatThread(props.extensions[0].id);
+  }, []);
 
   const { messages, loading } = useChat();
 
