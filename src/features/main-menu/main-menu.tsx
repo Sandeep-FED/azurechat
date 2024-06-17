@@ -76,8 +76,8 @@ export const MainMenu = async () => {
           )}
         </MenuItemContainer>
         <MenuItemContainer>
-          <MenuItem tooltip="faq">
-            <MenuLink href="/faq" ariaLabel="Go to the FAQ page">
+          <MenuItem tooltip="help">
+            <MenuLink href="/help" ariaLabel="Go to the FAQ page">
               <HelpCircle {...menuIconProps} />
             </MenuLink>
           </MenuItem>

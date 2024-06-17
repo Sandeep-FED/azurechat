@@ -1,14 +1,11 @@
-import { FC } from "react";
-import { ScrollArea } from "../ui/scroll-area";
-import { FAQHero } from "./faq-hero/faq-hero";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../ui/accordion";
-
-interface Props {}
+} from "@/features/ui/accordion";
+import React from "react";
+import { FAQHero } from "../faq-hero/faq-hero";
 
 const faqs = [
   {
@@ -61,37 +58,31 @@ const faqs = [
   },
 ];
 
-export const FAQPage: FC<Props> = async (props) => {
+export default function FAQPage() {
   return (
-    <ScrollArea className="flex-1">
-      <main className="flex flex-1 flex-col dark:bg-opacity-25 dark:bg-[#262626] bg-[#FFFFFF] bg-opacity-25 m-4 rounded-lg border-0 min-h-screen">
-        <FAQHero />
-        <div className="container max-w-4xl py-3 pb-8">
-          <div className="w-full">
-            <Accordion
-              type="multiple"
-              className="bg-background rounded-md w-full p-2"
+    <>
+      <FAQHero />
+      <Accordion
+        type="multiple"
+        className="bg-opacity-20 border rounded-md w-full p-2"
+      >
+        {faqs.map((faq, index) => (
+          <AccordionItem value={`item-${index}`} className="" key={index}>
+            <AccordionTrigger
+              className={`text-sm py-1 items-center border-b border-b-slate-700 ${
+                index !== faqs.length - 1 ? "pb-4" : "border-b-0"
+              }`}
             >
-              {faqs.map((faq, index) => (
-                <AccordionItem value={`item-${index}`} className="" key={index}>
-                  <AccordionTrigger
-                    className={`text-sm py-1 items-center border-b border-b-slate-700 ${
-                      index !== faqs.length - 1 ? "pb-4" : "border-b-0"
-                    }`}
-                  >
-                    <div className="flex gap-2 items-center">
-                      <span className="text-base">{faq.question}</span>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="pl-2 pt-4 ">
-                    <span className="font-extralight">{faq.answer}</span>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </div>
-      </main>
-    </ScrollArea>
+              <div className="flex gap-2 items-center">
+                <span className="text-base">{faq.question}</span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="pl-2 pt-4 ">
+              <span className="font-extralight">{faq.answer}</span>
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    </>
   );
-};
+}
