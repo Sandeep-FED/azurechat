@@ -69,16 +69,20 @@ export default function FAQPage() {
         {faqs.map((faq, index) => (
           <AccordionItem value={`item-${index}`} className="" key={index}>
             <AccordionTrigger
-              className={`text-sm py-1 items-center border-b border-b-slate-700 ${
+              className={`text-sm py-1 items-center border-b dark:border-b-slate-700 border-b-slate-200 ${
                 index !== faqs.length - 1 ? "pb-4" : "border-b-0"
               }`}
             >
               <div className="flex gap-2 items-center">
-                <span className="text-base">{faq.question}</span>
+                <span className="text-base dark:text-slate-200">
+                  {faq.question}
+                </span>
               </div>
             </AccordionTrigger>
-            <AccordionContent className="pl-2 pt-4 ">
-              <span className="font-extralight">{faq.answer}</span>
+            <AccordionContent className="pl-2 pt-4">
+              <span className="font-light text-muted-foreground">
+                {faq.answer}
+              </span>
             </AccordionContent>
           </AccordionItem>
         ))}

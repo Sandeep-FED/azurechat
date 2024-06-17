@@ -66,7 +66,7 @@ export default function GetStartedPage() {
               </div>
 
               <div className="flex flex-col">
-                <div className="step-title font-bold text-xl text-slate-200">
+                <div className="step-title font-bold text-xl dark:text-slate-200">
                   {instruction.title}
                 </div>
                 <div className="step-content mt-4 font-light text-sm text-muted-foreground">
