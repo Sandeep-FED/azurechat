@@ -6,7 +6,14 @@ import {
   MenuItemContainer,
   menuIconProps,
 } from "@/ui/menu";
-import { BookText, Home, Blocks, Sheet, VenetianMask } from "lucide-react";
+import {
+  BookText,
+  Home,
+  Blocks,
+  Sheet,
+  VenetianMask,
+  HelpCircle,
+} from "lucide-react";
 import { getCurrentUser } from "../auth-page/helpers";
 import { MenuLink } from "./menu-link";
 import { UserProfile } from "./user-profile";
@@ -69,6 +76,11 @@ export const MainMenu = async () => {
           )}
         </MenuItemContainer>
         <MenuItemContainer>
+          <MenuItem tooltip="faq">
+            <MenuLink href="/faq" ariaLabel="Go to the FAQ page">
+              <HelpCircle {...menuIconProps} />
+            </MenuLink>
+          </MenuItem>
           <MenuItem tooltip="Profile">
             <UserProfile />
           </MenuItem>
