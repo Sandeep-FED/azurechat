@@ -24,8 +24,8 @@ interface ChatReportingProps {
 
 export const ChatReportingPage: FC<ChatReportingProps> = async (props) => {
   return (
-    <ScrollArea className="flex-1">
-      <main className="flex flex-1 flex-col gap-5  dark:bg-opacity-25 dark:bg-[#262626] bg-[#FFFFFF] bg-opacity-25 m-4 rounded-lg border-0 min-h-screen p-28">
+    <ScrollArea className="flex-1 h-full">
+      <main className="flex flex-1 flex-col dark:bg-opacity-25 dark:bg-[#262626] bg-[#FFFFFF] bg-opacity-25 m-4 rounded-lg border-0 min-h-screen">
         <ReportingHero />
         <Suspense fallback={<PageLoader />} key={props.page}>
           <ReportingContent {...props} />
@@ -52,7 +52,7 @@ async function ReportingContent(props: ChatReportingProps) {
   const chatThreads = chatHistoryResponse.response;
   const hasMoreResults = chatThreads.length === SEARCH_PAGE_SIZE;
   return (
-    <div className="container max-w-full py-3">
+    <div className="container max-w-full py-3 px-32 pt-0">
       <Table>
         <TableHeader>
           <TableRow>
