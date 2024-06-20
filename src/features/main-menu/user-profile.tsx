@@ -31,18 +31,18 @@ export const UserProfile = () => {
           <CircleUserRound {...menuIconProps} role="button" />
         )}
       </DropdownMenuTrigger>
-      <DropdownMenuContent side="right" className="w-56" align="end">
+      <DropdownMenuContent side="right" className="w-80 left-2" align="end">
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col gap-2">
             <p className="text-sm font-medium leading-none">
               {session?.user?.name}
             </p>
             <p className="text-xs leading-none text-muted-foreground">
-              {(session?.user?.email?.length ?? 0) > 25
-                ? (session?.user?.email?.substring(0, 25) ?? "") + "..."
+              {(session?.user?.email?.length ?? 0) > 60
+                ? (session?.user?.email?.substring(0, 60) ?? "") + "..."
                 : session?.user?.email ?? ""}
             </p>
-            <p className="text-xs leading-none text-muted-foreground">
+            <p className="text-xs leading-none dark:text-muted-foreground text-black font-semibold">
               {session?.user?.isAdmin ? "Admin" : ""}
             </p>
           </div>
