@@ -52,7 +52,7 @@ export const AddPromptSlider: FC<SliderProps> = (props) => {
     >
       <SheetContent className="min-w-[480px] sm:w-[540px] flex flex-col">
         <SheetHeader>
-          <SheetTitle>Persona</SheetTitle>
+          <SheetTitle>Add New Prompt</SheetTitle>
         </SheetHeader>
         <form action={formAction} className="flex-1 flex flex-col">
           <ScrollArea
@@ -105,7 +105,7 @@ export const AddPromptSlider: FC<SliderProps> = (props) => {
 function Submit() {
   const status = useFormStatus();
   return (
-    <Button disabled={status.pending} className="gap-2 dark:text-white">
+    <Button disabled={status.pending} className="gap-2 dark:text-white w-40">
       <LoadingIndicator isLoading={status.pending} />
       Save
     </Button>

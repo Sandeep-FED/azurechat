@@ -60,9 +60,6 @@ export const AddNewPersona: FC<Props> = (props) => {
     }
   };
 
-  console.log("Hi");
-  console.log("user departments", props.departments);
-
   return (
     <Sheet
       open={isOpened}
@@ -72,9 +69,11 @@ export const AddNewPersona: FC<Props> = (props) => {
     >
       <SheetContent className="min-w-[480px] sm:w-[540px] flex flex-col">
         <SheetHeader>
-          <SheetTitle>Persona</SheetTitle>
+          <SheetTitle className="text-xl font-normal">
+            Add New Persona
+          </SheetTitle>
         </SheetHeader>
-        <form action={formAction} className="flex-1 flex flex-col">
+        <form action={formAction} className="flex-1 flex flex-col mt-7">
           <ScrollArea
             className="flex-1 -mx-6 flex max-h-[calc(100vh-140px)]"
             type="always"
@@ -102,7 +101,7 @@ export const AddNewPersona: FC<Props> = (props) => {
                 />
               </div>
               <div className="grid gap-2">
-                <Label>Suitable Department</Label>
+                <Label>Select Department</Label>
                 <Select
                   name="department"
                   required
@@ -139,7 +138,7 @@ export const AddNewPersona: FC<Props> = (props) => {
               <div className="grid gap-2 flex-1 ">
                 <Label htmlFor="personaMessage">Personality</Label>
                 <Textarea
-                  className="min-h-[300px]"
+                  className="min-h-[300px] "
                   required
                   defaultValue={persona.personaMessage}
                   name="personaMessage"
@@ -160,7 +159,7 @@ export const AddNewPersona: FC<Props> = (props) => {
 function Submit() {
   const status = useFormStatus();
   return (
-    <Button disabled={status.pending} className="gap-2 text-white">
+    <Button disabled={status.pending} className="gap-2 text-white w-40">
       <LoadingIndicator isLoading={status.pending} />
       Save
     </Button>

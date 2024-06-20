@@ -62,9 +62,11 @@ export const AddExtension: FC<Props> = (props) => {
     >
       <SheetContent className="min-w-[680px] flex flex-col">
         <SheetHeader>
-          <SheetTitle>Extension</SheetTitle>
+          <SheetTitle className="text-xl font-normal">
+            Add New Extension
+          </SheetTitle>
         </SheetHeader>
-        <form action={formAction} className="flex-1 flex flex-col ">
+        <form action={formAction} className="flex-1 flex flex-col mt-7">
           <ScrollArea
             className="h-full -mx-6 max-h-[calc(100vh-140px)]"
             type="always"
@@ -118,7 +120,7 @@ export const AddExtension: FC<Props> = (props) => {
 function Submit() {
   const { isLoading } = useExtensionState();
   return (
-    <Button disabled={isLoading} className="gap-2 dark:text-white">
+    <Button disabled={isLoading} className="gap-2 dark:text-white w-40">
       <LoadingIndicator isLoading={isLoading} />
       Save
     </Button>
