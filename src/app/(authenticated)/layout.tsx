@@ -20,11 +20,15 @@ export default function RootLayout({
       <div className={cn("flex flex-1 items-stretch")}>
         <img
           src={"login_ilustration1.svg"}
-          className="absolute w-1/2 -top-36 -left-32"
+          className="absolute w-1/2 -top-40 -left-32 blur-2xl"
         />
         <img
           src={"login_ilustration1.svg"}
-          className="absolute top-auto left-1/2 transform -translate-x-1/4 w-2/3"
+          className="absolute w-1/3 top-auto -bottom-40 left-36 blur-2xl"
+        />
+        <img
+          src={"login_ilustration1.svg"}
+          className="absolute top-auto left-1/2 transform -translate-x-1/4 w-2/4"
         />
 
         {/* <img src={"login_ilustration1.svg"} className="absolute" /> */}
