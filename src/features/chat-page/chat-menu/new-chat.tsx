@@ -13,7 +13,6 @@ export const NewChat = () => {
       aria-disabled={pending}
       size={"default"}
       className="flex gap-2 bg-primary text-white w-full mr-8"
-      variant={"outline"}
     >
       {pending ? (
         <LoadingIndicator isLoading={pending} />
