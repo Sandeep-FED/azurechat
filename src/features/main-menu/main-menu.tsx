@@ -46,7 +46,7 @@ export const MainMenu = async () => {
               <VenetianMask {...menuIconProps} />
             </MenuLink>
           </MenuItem>
-          <MenuItem tooltip="extensions">
+          <MenuItem tooltip="Extensions">
             <MenuLink
               href="/extensions"
               ariaLabel="Go to the Extensions configuration page"
@@ -54,7 +54,7 @@ export const MainMenu = async () => {
               <Blocks {...menuIconProps} />
             </MenuLink>
           </MenuItem>
-          <MenuItem tooltip="prompts">
+          <MenuItem tooltip="Prompts">
             <MenuLink
               href="/prompt"
               ariaLabel="Go to the Prompt Library configuration page"
@@ -64,7 +64,7 @@ export const MainMenu = async () => {
           </MenuItem>
           {user.isAdmin && (
             <>
-              <MenuItem tooltip="reporting">
+              <MenuItem tooltip="Reporting">
                 <MenuLink
                   href="/reporting"
                   ariaLabel="Go to the Admin reporting"
@@ -76,7 +76,7 @@ export const MainMenu = async () => {
           )}
         </MenuItemContainer>
         <MenuItemContainer>
-          <MenuItem tooltip="help">
+          <MenuItem tooltip="Help">
             <MenuLink href="/help" ariaLabel="Go to the FAQ page">
               <HelpCircle {...menuIconProps} />
             </MenuLink>
