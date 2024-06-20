@@ -23,7 +23,7 @@ export const PromptCard: FC<Props> = (props) => {
           </div>
         )}
       </CardHeader>
-      <CardContent className="content-stretch w-full gap-8 text-sm text-muted-foreground">
+      <CardContent className="content-stretch w-full gap-4 text-sm text-muted-foreground">
         {prompt.description.length > 100
           ? prompt.description.slice(0, 100).concat("...")
           : prompt.description}

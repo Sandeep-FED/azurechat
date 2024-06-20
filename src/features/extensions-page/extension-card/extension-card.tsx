@@ -13,7 +13,7 @@ import {
 import { ExtensionModel } from "../extension-services/models";
 import { extensionStore } from "../extension-store";
 import { ExtensionCardContextMenu } from "./extension-context-menu";
-import { StartNewExtensionChat } from "./start-new-extension-chat";
+// import { StartNewExtensionChat } from "./start-new-extension-chat";
 
 interface Props {
   extension: ExtensionModel;
@@ -40,7 +40,7 @@ export const ExtensionCard: FC<Props> = (props) => {
           ? `${extension.description.slice(0, 100)}...`
           : extension.description}
       </CardContent>
-      <CardFooter className="content-stretch w-full gap-8">
+      <CardFooter className="content-stretch w-full gap-4">
         {props.showContextMenu && (
           <Button
             variant={"outline"}
@@ -51,7 +51,7 @@ export const ExtensionCard: FC<Props> = (props) => {
           </Button>
         )}
 
-        <StartNewExtensionChat extension={extension} />
+        {/* <StartNewExtensionChat extension={extension} /> */}
       </CardFooter>
     </Card>
   );
