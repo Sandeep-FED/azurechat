@@ -3,8 +3,6 @@
 import { AI_NAME } from "@/features/theme/theme-config";
 import { Hero } from "@/features/ui/hero";
 import { Blocks } from "lucide-react";
-import { AISearch } from "./ai-search-issues";
-import { BingSearch } from "./bing-search";
 import { NewExtension } from "./new-extension";
 
 interface ExtensionHeroProps {
@@ -23,8 +21,6 @@ export const ExtensionHero = (props: ExtensionHeroProps) => {
         resources`}
     >
       {props.user.isAdmin && <NewExtension />}
-      {/* <BingSearch /> */}
-      {/* <AISearch /> */}
     </Hero>
   );
 };
