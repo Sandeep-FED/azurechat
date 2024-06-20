@@ -3,14 +3,7 @@ import { AI_NAME } from "@/features/theme/theme-config";
 import { signIn } from "next-auth/react";
 import { FC, useState, useEffect } from "react";
 import { Button } from "../ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
-import { useTheme } from "next-themes";
+import { Card, CardDescription, CardTitle } from "../ui/card";
 import { cn } from "../ui/lib";
 import { Raleway } from "next/font/google";
 
@@ -25,7 +18,6 @@ const ralewaySans = Raleway({
 });
 
 export const LogIn: FC<LoginProps> = (props) => {
-  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   // useEffect only runs on the client, so now we can safely show the UI
