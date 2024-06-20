@@ -23,9 +23,12 @@ export const ChatSamplePromptPage: FC<ChatSamplePromptProps> = async (
 
   return (
     <ScrollArea className="flex-1 h-full">
-      <main className="flex flex-1 flex-col dark:bg-opacity-25 dark:bg-[#262626] bg-[#FFFFFF] bg-opacity-25 m-4 rounded-lg border-0 min-h-screen">
+      <main className="flex flex-1 flex-col dark:bg-opacity-25 dark:bg-[#262626] bg-[#FFFFFF] bg-opacity-25 m-4 rounded-lg border-0 min-h-screen gap-8">
         <PromptHero user={user} />
-        <div className="container max-w-4xl py-3">
+        <div className="container max-w-4xl py-3 pb-16">
+          <h2 className="text-base font-semibold mb-4 text-primary">
+            Prompts List
+          </h2>
           <div className="grid grid-cols-3 gap-3">
             {promptsResponse.response.map((prompt) => {
               return (
