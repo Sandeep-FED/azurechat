@@ -15,19 +15,27 @@ interface ChatMenuProps {
 export const ChatMenu: FC<ChatMenuProps> = (props) => {
   const menuItemsGrouped = GroupChatThreadByType(props.menuItems);
   return (
-    <div className="px-3 flex flex-col gap-8 overflow-hidden ">
+    <div className="px-3 flex flex-col gap-8 overflow-hidden pb-8">
       {Object.entries(menuItemsGrouped).map(
         ([groupName, groupItems], index) => (
           <ChatGroup key={index} title={groupName}>
-            {groupItems?.map((item) => (
-              <ChatMenuItem
-                key={item.id}
-                href={`/chat/${item.id}`}
-                chatThread={item}
-              >
-                {item.name.replace("\n", "")}
-              </ChatMenuItem>
-            ))}
+            {groupItems?.length > 0
+              ? groupItems.map((item) => (
+                  <ChatMenuItem
+                    key={item.id}
+                    href={`/chat/${item.id}`}
+                    chatThread={item}
+                  >
+                    {item.name.replace("\n", "")}
+                  </ChatMenuItem>
+                ))
+              : groupName === "Bookmarked" && (
+                  <div className="pl-3">
+                    <span className="text-sm dark:text-gray-600 text-gray-400">
+                      No bookmark added yet
+                    </span>
+                  </div>
+                )}
           </ChatGroup>
         )
       )}
