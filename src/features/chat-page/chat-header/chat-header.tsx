@@ -19,15 +19,18 @@ export const ChatHeader: FC<Props> = (props) => {
     props.chatThread.personaMessageTitle === undefined
       ? CHAT_DEFAULT_PERSONA
       : props.chatThread.personaMessageTitle;
+
   return (
     <div className="bg-transparent flex items-center py-2 pt-5">
       <div className="container max-w-3xl flex justify-between items-center">
         <div className="flex flex-col">
           <span>{props.chatThread.name}</span>
-          <span className="text-sm text-muted-foreground flex gap-1 items-center">
-            <VenetianMask size={18} />
-            {persona}
-          </span>
+          {props.chatThread.personaMessageTitle === "Quadra GPT" && (
+            <span className="text-sm text-muted-foreground flex gap-1 items-center">
+              <VenetianMask size={18} />
+              {persona}
+            </span>
+          )}
         </div>
         <div className="flex gap-2">
           {/* <PersonaDetail chatThread={props.chatThread} /> */}
