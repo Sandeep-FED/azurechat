@@ -23,8 +23,8 @@ export const ExtensionHero = (props: ExtensionHeroProps) => {
         resources`}
     >
       {props.user.isAdmin && <NewExtension />}
-      <BingSearch />
-      <AISearch />
+      {/* <BingSearch /> */}
+      {/* <AISearch /> */}
     </Hero>
   );
 };
