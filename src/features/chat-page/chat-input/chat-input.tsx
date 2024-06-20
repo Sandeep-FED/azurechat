@@ -82,10 +82,10 @@ export const ChatInput = () => {
               fileStore.onFileChange({ formData, chatThreadId })
             }
           />
+          <ImageInput />
           <PromptSlider />
         </ChatInputSecondaryActionArea>
         <ChatInputPrimaryActionArea>
-          <ImageInput />
           <Microphone
             startRecognition={() => speechToTextStore.startRecognition()}
             stopRecognition={() => speechToTextStore.stopRecognition()}
