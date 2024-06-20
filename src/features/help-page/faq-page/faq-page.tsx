@@ -74,13 +74,13 @@ export default function FAQPage() {
               }`}
             >
               <div className="flex gap-2 items-center">
-                <span className="text-base dark:text-slate-200">
+                <span className="text-lg dark:text-slate-200">
                   {faq.question}
                 </span>
               </div>
             </AccordionTrigger>
-            <AccordionContent className="pl-2 pt-4">
-              <span className="font-light text-muted-foreground">
+            <AccordionContent className="pl-2 pt-4 pr-8">
+              <span className="font-normal text-muted-foreground">
                 {faq.answer}
               </span>
             </AccordionContent>

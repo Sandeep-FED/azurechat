@@ -6,14 +6,18 @@ const instructionsList = [
     title: "Pick Your Persona",
     description: (
       <div className="flex flex-col gap-4">
-        <li>
-          Kick things off by choosing a persona that fits your current need.
-          Each persona has a unique skill set, so choose wisely!
-        </li>
-        <li>
-          Example: Need tech help? Go for the "Technical Support Specialist."
-          Want health tips? Pick the "Fitness Coach."
-        </li>
+        <div className="flex">
+          <li></li>
+          Start by selecting the persona that aligns with your current needs.
+          Each persona is uniquely equipped to handle different types of
+          inquiries and tasks, providing expert guidance tailored to their
+          domain.
+        </div>
+        <div className="flex">
+          <li></li>
+          <strong>Example:</strong> Need to refine your hiring process? Choose
+          the "Talent Acquisition Specialist."
+        </div>
       </div>
     ),
   },
@@ -21,14 +25,17 @@ const instructionsList = [
     title: "Start the Conversation",
     description: (
       <div className="flex flex-col gap-4">
-        <li>
+        <div className="flex">
+          <li></li>
           Type your question or request into the chat box and watch the persona
           spring into action.
-        </li>
-        <li>
-          Example: For the tech specialist, you might ask, "How do I fix a red
-          blinking light on my SP-300a machine?"
-        </li>
+        </div>
+        <div className="flex">
+          <li></li>
+          Example: For the "Talent Acquisition Specialist," you might ask, "What
+          are the best ways to attract high-quality candidates for a software
+          engineering role?"
+        </div>
       </div>
     ),
   },
@@ -36,14 +43,47 @@ const instructionsList = [
     title: "Engage in Interactive Chat",
     description: (
       <div className="flex flex-col gap-4">
-        <li>
-          The persona will provide detailed, context-specific answers. Feel free
-          to ask follow-up questions to get even more out of the conversation.
-        </li>
-        <li>
-          Example Response: "You need to replace parts A & B. Here's the link to
-          order them.
-        </li>
+        <div className="flex">
+          <li></li>
+          Enter your queries and watch as the persona delivers detailed and
+          context-specific responses. You can also ask follow-up questions to
+          delve deeper into the subject matter, ensuring you get the most out of
+          the conversation.
+        </div>
+        <div>
+          <div className="flex">
+            <li></li>
+            Example: With the "Talent Acquisition Specialist," you might
+            explore:
+          </div>
+          <div className="flex flex-col pl-6 mt-4 gap-4">
+            <div className="flex">
+              <li></li>
+              Initial Query: "What are the best ways to attract high-quality
+              candidates for a software engineering role?"
+            </div>
+            <div className="flex">
+              <li></li>
+              Persona Response: "To attract top software engineers, consider
+              using niche job boards like Stack Overflow and GitHub Jobs.
+              Highlight your company's tech stack and innovation culture in the
+              job description."
+            </div>
+            <div className="flex">
+              <li></li>
+              Follow-Up Question: "Can you provide examples of how to showcase
+              our tech stack effectively in job postings?"
+            </div>
+            <div className="flex">
+              <li></li>
+              Persona Response: "Absolutely. You can mention specific
+              technologies you use, like 'We work with Python, Django, and
+              React,' and describe your approach to software development.
+              Including links to your GitHub repositories or projects can also
+              be a great way to attract tech-savvy candidates."
+            </div>
+          </div>
+        </div>
       </div>
     ),
   },
@@ -65,11 +105,11 @@ export default function GetStartedPage() {
                 )}
               </div>
 
-              <div className="flex flex-col">
+              <div className="flex flex-col mt-1">
                 <div className="step-title font-bold text-xl dark:text-slate-200">
                   {instruction.title}
                 </div>
-                <div className="step-content mt-4 font-light text-sm text-muted-foreground">
+                <div className="step-content mt-4 font-normal text-sm text-muted-foreground">
                   {instruction.description}
                 </div>
               </div>
