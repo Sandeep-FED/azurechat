@@ -2,7 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import AzureADProvider from "next-auth/providers/azure-ad";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { Provider } from "next-auth/providers/index";
-import { hashValue } from "./helpers";
+import { fetchUserProfile, hashValue } from "./helpers";
 
 /**
  * Takes a token, and returns a new token with updated
@@ -148,6 +148,16 @@ export const options: NextAuthOptions = {
     },
     async session({ session, token, user }) {
       session.user.isAdmin = token.isAdmin as boolean;
+
+      if (token.accessToken) {
+        try {
+          const image = await fetchUserProfile(token.accessToken);
+          session.user.image = image;
+        } catch (error) {
+          console.error("Error fetching user profile:", error);
+        }
+      }
+
       return session;
     },
   },

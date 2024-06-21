@@ -53,3 +53,24 @@ export type UserModel = {
   email: string;
   isAdmin: boolean;
 };
+
+export async function fetchUserProfile(accessToken: any) {
+  const graphEndpoint =
+    "https://graph.microsoft.com/v1.0/me/photos/48x48/$value";
+  const response = await fetch(graphEndpoint, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Could not fetch profile picture");
+  }
+
+  const buffer = await response.arrayBuffer();
+  const base64Image = `data:image/jpeg;base64,${Buffer.from(buffer).toString(
+    "base64"
+  )}`;
+
+  return base64Image;
+}
