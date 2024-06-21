@@ -36,11 +36,16 @@ class InputImageState {
   public async OnFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
     if (file) {
-      const base64 = await this.fileToBase64(file);
-      const url = URL.createObjectURL(file);
-      this.previewImage = url;
-      this.base64Image = base64;
-      this.fileUrl = file.name;
+      // Check if the file is an image
+      if (!file.type.startsWith("image/")) {
+        alert("Invalid file type: The file must be an image.");
+      } else {
+        const base64 = await this.fileToBase64(file);
+        const url = URL.createObjectURL(file);
+        this.previewImage = url;
+        this.base64Image = base64;
+        this.fileUrl = file.name;
+      }
     }
   }
 }
