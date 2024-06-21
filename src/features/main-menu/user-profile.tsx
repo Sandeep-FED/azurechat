@@ -21,7 +21,7 @@ export const UserProfile = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         {session?.user?.image ? (
-          <Avatar className="">
+          <Avatar className="w-8 h-8">
             <AvatarImage
               src={session?.user?.image!}
               alt={session?.user?.name!}
