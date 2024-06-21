@@ -3,7 +3,7 @@ import { GetStartedHero } from "../get-started-hero/get-started-hero";
 
 const instructionsList = [
   {
-    title: "Pick Your Persona",
+    title: "Pick your persona",
     description: (
       <div className="flex flex-col gap-4">
         <div className="flex">
@@ -22,7 +22,7 @@ const instructionsList = [
     ),
   },
   {
-    title: "Start the Conversation",
+    title: "Start the conversation",
     description: (
       <div className="flex flex-col gap-4">
         <div className="flex">
@@ -40,7 +40,7 @@ const instructionsList = [
     ),
   },
   {
-    title: "Engage in Interactive Chat",
+    title: "Engage in interactive chat",
     description: (
       <div className="flex flex-col gap-4">
         <div className="flex">
