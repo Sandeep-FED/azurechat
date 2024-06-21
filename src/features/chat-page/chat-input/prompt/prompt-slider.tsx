@@ -15,6 +15,12 @@ import {
 import { BookText } from "lucide-react";
 import { FC } from "react";
 import { inputPromptStore, useInputPromptState } from "./input-prompt-store";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/features/ui/tooltip";
 
 interface SliderProps {}
 
@@ -28,15 +34,24 @@ export const PromptSlider: FC<SliderProps> = (props) => {
       }}
     >
       <SheetTrigger asChild>
-        <Button
-          size="icon"
-          type="button"
-          variant={"ghost"}
-          onClick={() => inputPromptStore.openPrompt()}
-          aria-label="Open prompt library"
-        >
-          <BookText size={16} />
-        </Button>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                size="icon"
+                type="button"
+                variant={"ghost"}
+                onClick={() => inputPromptStore.openPrompt()}
+                aria-label="Open prompt library"
+              >
+                <BookText size={16} />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent className="left-4 z-10">
+              <p>Prompt templates</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </SheetTrigger>
 
       <SheetContent className="min-w-[480px] flex flex-col">

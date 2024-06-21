@@ -3,6 +3,12 @@ import Image from "next/image";
 import { FC, useRef } from "react";
 import { Button } from "../../button";
 import { InputImageStore, useInputImage } from "./input-image-store";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../../tooltip";
 
 export const ImageInput: FC = () => {
   const { base64Image, previewImage } = useInputImage();
@@ -48,15 +54,24 @@ export const ImageInput: FC = () => {
             className="hidden"
             onChange={(e) => InputImageStore.OnFileChange(e)}
           />
-          <Button
-            size="icon"
-            variant={"ghost"}
-            type="button"
-            onClick={handleButtonClick}
-            aria-label="Add an image to the chat input"
-          >
-            <ImageIcon size={16} />
-          </Button>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  size="icon"
+                  variant={"ghost"}
+                  type="button"
+                  onClick={handleButtonClick}
+                  aria-label="Add an image to the chat input"
+                >
+                  <ImageIcon size={16} />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent align="start">
+                <p>Attach image to chat</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </>
       )}
     </div>
