@@ -65,7 +65,7 @@ export const LogIn: FC<LoginProps> = (props) => {
           className="absolute bottom-0"
           width="400px"
         />
-        <Card className="bg-[#E32FAB] bg-opacity-25 border-solid border-white border-opacity-20 backdrop-blur-[8px] m-8 min-h-[458px] pt-8 pl-8 h-full">
+        <Card className="bg-[#E32FAB] bg-opacity-25 border-solid border-white border-opacity-20 backdrop-blur-[8px] m-8 pt-8 pl-8 h-full">
           <CardTitle className="text-3xl text-white">
             Welcome to QBot!
           </CardTitle>
