@@ -24,7 +24,14 @@ export const ChatHeader: FC<Props> = (props) => {
     <div className="bg-transparent flex items-center py-2 pt-5">
       <div className="container max-w-3xl flex justify-between items-center">
         <div className="flex flex-col">
-          <span>{props.chatThread.name}</span>
+          {props.chatThread.personaMessageTitle === "Quadra GPT" ? (
+            <span>{props.chatThread.name}</span>
+          ) : (
+            <div className="flex gap-4">
+              <VenetianMask size={18} />
+              <span>{props.chatThread.name}</span>
+            </div>
+          )}
           {props.chatThread.personaMessageTitle === "Quadra GPT" && (
             <span className="text-sm text-muted-foreground flex gap-1 items-center">
               <VenetianMask size={18} />
