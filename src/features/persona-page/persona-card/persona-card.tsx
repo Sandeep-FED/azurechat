@@ -21,17 +21,14 @@ export const PersonaCard: FC<Props> = (props) => {
     "#FFA51F",
     "#FF5F5F",
     "#00DE9C",
-    "#FF5A4F",
     "#297FF1",
-    "#40E0D0",
     "#8E66FF",
-    "#1ABC9C",
     "#8E44AD",
-    "#FFC107",
+    "#02BDE7",
     "#E91E63",
     "#CDDC39",
     "#4F66E9",
-    "#DC143C",
+    "#E814AC",
   ];
 
   const getRandomColor = () =>
