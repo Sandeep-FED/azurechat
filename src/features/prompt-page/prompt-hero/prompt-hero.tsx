@@ -20,14 +20,12 @@ export const PromptHero = (props: PromptHeroProps) => {
           "Prompt templates are statements or questions meant to help users get creative without having to come up with ideas from scratch."
         }
       >
-        {props.user.isAdmin && (
           <HeroButton
             title="Add New Prompt"
             description="Build your own prompt template"
             icon={<PlusCircleIcon />}
             onClick={() => promptStore.newPrompt()}
           />
-        )}
       </Hero>
     </div>
   );
