@@ -46,14 +46,16 @@ export const MainMenu = async () => {
               <VenetianMask {...menuIconProps} />
             </MenuLink>
           </MenuItem>
-          <MenuItem tooltip="Extensions">
-            <MenuLink
-              href="/extensions"
-              ariaLabel="Go to the Extensions configuration page"
-            >
-              <Blocks {...menuIconProps} />
-            </MenuLink>
-          </MenuItem>
+          {user.isAdmin && (
+            <MenuItem tooltip="Extensions">
+              <MenuLink
+                href="/extensions"
+                ariaLabel="Go to the Extensions configuration page"
+              >
+                <Blocks {...menuIconProps} />
+              </MenuLink>
+            </MenuItem>
+          )}
           <MenuItem tooltip="Prompts">
             <MenuLink
               href="/prompt"
