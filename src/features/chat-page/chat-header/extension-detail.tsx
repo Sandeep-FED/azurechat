@@ -46,9 +46,9 @@ export const ExtensionDetail: FC<Props> = (props) => {
       </SheetTrigger>
       <SheetContent className="min-w-[480px] sm:w-[540px] flex flex-col">
         <SheetHeader>
-          <SheetTitle>Extensions</SheetTitle>
+          <SheetTitle className="text-xl font-normal">Extensions</SheetTitle>
         </SheetHeader>
-        <ScrollArea className="flex-1 -mx-6 flex" type="always">
+        <ScrollArea className="flex-1 -mx-6 flex mt-7" type="always">
           <div className="pb-6 px-6 flex gap-4 flex-col  flex-1">
             {props.extensions.map((extension) => {
               const isInstalled =
@@ -58,9 +58,9 @@ export const ExtensionDetail: FC<Props> = (props) => {
                   className="flex gap-2 p-4 items-center justify-between border rounded-md"
                   key={extension.id}
                 >
-                  <div className="flex flex-col gap-2 flex-1">
+                  <div className="flex flex-col gap-2 flex-1 text-base font-light">
                     <div>{extension.name}</div>
-                    <div className="text-muted-foreground">
+                    <div className="text-sm text-muted-foreground">
                       {extension.description}
                     </div>
                   </div>

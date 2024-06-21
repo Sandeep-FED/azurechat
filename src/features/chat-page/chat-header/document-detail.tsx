@@ -19,15 +19,19 @@ export const DocumentDetail: FC<Props> = (props) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant={"outline"} className="gap-2" aria-label="Current Chat Documents Menu">
+        <Button
+          variant={"outline"}
+          className="gap-2"
+          aria-label="Current Chat Documents Menu"
+        >
           <File size={16} /> {props.chatDocuments.length}
         </Button>
       </SheetTrigger>
       <SheetContent className="min-w-[480px] sm:w-[540px] flex flex-col">
         <SheetHeader>
-          <SheetTitle>Documents</SheetTitle>
+          <SheetTitle className="text-xl font-normal">Documents</SheetTitle>
         </SheetHeader>
-        <ScrollArea className="flex-1 -mx-6 flex" type="always">
+        <ScrollArea className="flex-1 -mx-6 flex mt-7" type="always">
           <div className="pb-6 px-6 flex gap-2 flex-col  flex-1">
             {props.chatDocuments.map((doc) => {
               return (
