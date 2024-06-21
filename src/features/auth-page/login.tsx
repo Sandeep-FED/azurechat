@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 import { Card, CardDescription, CardTitle } from "../ui/card";
 import { cn } from "../ui/lib";
 import { Raleway } from "next/font/google";
+import { useTheme } from "next-themes";
 
 interface LoginProps {
   isDevMode: boolean;
@@ -19,6 +20,7 @@ const ralewaySans = Raleway({
 
 export const LogIn: FC<LoginProps> = (props) => {
   const [mounted, setMounted] = useState(false);
+  const { theme } = useTheme();
 
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
@@ -29,11 +31,14 @@ export const LogIn: FC<LoginProps> = (props) => {
     return null;
   }
 
+  const botIcon =
+    theme === "dark" ? "QBot_Dark_Icon.svg" : "QBot_Light_Icon.svg";
+
   return (
     <>
       <div className="flex gap-2 flex-col min-w-[300px] items-center w-[70%]">
         <div className="flex items-center gap-2">
-          <img src={"QuaBot_Light_Icon.svg"} width={50} />
+          <img src={botIcon} width={50} />
           <p className={cn(ralewaySans.className, "text-3xl font-semibold")}>
             {AI_NAME}
           </p>

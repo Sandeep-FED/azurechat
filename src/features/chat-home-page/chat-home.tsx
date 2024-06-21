@@ -5,7 +5,6 @@ import { PersonaModel } from "@/features/persona-page/persona-services/models";
 import { AI_DESCRIPTION, AI_NAME } from "@/features/theme/theme-config";
 import { Hero } from "@/features/ui/hero";
 import { ScrollArea } from "@/features/ui/scroll-area";
-import Image from "next/image";
 import { FC } from "react";
 import { cn } from "@/ui/lib";
 import { ralewaySans } from "../../app/fonts";
@@ -24,13 +23,7 @@ export const ChatHome: FC<ChatPersonaProps> = (props) => {
         <Hero
           title={
             <>
-              <Image
-                src={"/QuaBot_Light_Icon.svg"}
-                width={60}
-                height={60}
-                quality={100}
-                alt="QuaBot Icon"
-              />{" "}
+              <div className="dark:bg-[url('/QBot_Dark_Icon.svg')] bg-[url('/QBot_Light_Icon.svg')] w-[60px] h-[60px] bg-cover"></div>
               <span className={cn(ralewaySans.className)}>{AI_NAME}</span>
             </>
           }

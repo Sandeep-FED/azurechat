@@ -30,7 +30,7 @@ export default function ReportingChatPage(props: ReportingChatPageProps) {
                 }}
                 profilePicture={
                   message.role === "assistant"
-                    ? "/QuaBot_Light_Icon.svg"
+                    ? "/QBot_Light_Icon.svg"
                     : undefined
                 }
               >

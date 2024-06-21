@@ -16,6 +16,7 @@ import {
   ChatThreadModel,
 } from "./chat-services/models";
 import MessageContent from "./message-content";
+import { useTheme } from "next-themes";
 
 interface ChatPageProps {
   messages: Array<ChatMessageModel>;
@@ -26,6 +27,7 @@ interface ChatPageProps {
 
 export const ChatPage: FC<ChatPageProps> = (props) => {
   const { data: session } = useSession();
+  const { theme } = useTheme();
 
   useEffect(() => {
     console.log(props.extensions);
@@ -52,6 +54,9 @@ export const ChatPage: FC<ChatPageProps> = (props) => {
 
   useChatScrollAnchor({ ref: current });
 
+  const botIcon =
+    theme === "dark" ? "/QBot_Dark_Icon.svg" : "/QBot_Light_Icon.svg";
+
   return (
     <main className="flex flex-1 relative flex-col">
       <ChatHeader
@@ -71,9 +76,7 @@ export const ChatPage: FC<ChatPageProps> = (props) => {
                   navigator.clipboard.writeText(message.content);
                 }}
                 profilePicture={
-                  message.role === "assistant"
-                    ? "/QuaBot_Light_Icon.svg"
-                    : session?.user?.image
+                  message.role === "assistant" ? botIcon : session?.user?.image
                 }
               >
                 <MessageContent message={message} />
