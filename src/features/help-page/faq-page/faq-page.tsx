@@ -79,7 +79,7 @@ export default function FAQPage() {
                 </span>
               </div>
             </AccordionTrigger>
-            <AccordionContent className="pl-2 pt-4 pr-8">
+            <AccordionContent className="pl-2 pt-4 px-8">
               <span className="font-normal text-muted-foreground">
                 {faq.answer}
               </span>
