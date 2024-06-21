@@ -64,7 +64,7 @@ export default function FAQPage() {
       <FAQHero />
       <Accordion
         type="multiple"
-        className="bg-opacity-20 border rounded-md w-full p-2"
+        className="bg-opacity-20 border rounded-md w-full p-2 mt-12"
       >
         {faqs.map((faq, index) => (
           <AccordionItem value={`item-${index}`} className="" key={index}>
@@ -79,7 +79,7 @@ export default function FAQPage() {
                 </span>
               </div>
             </AccordionTrigger>
-            <AccordionContent className="pl-2 pt-4 px-8">
+            <AccordionContent className="pl-2 pt-4 px-10">
               <span className="font-normal text-muted-foreground">
                 {faq.answer}
               </span>

@@ -32,9 +32,9 @@ const instructionsList = [
         </div>
         <div className="flex">
           <li></li>
-          Example: For the "Talent Acquisition Specialist," you might ask, "What
-          are the best ways to attract high-quality candidates for a software
-          engineering role?"
+          <strong>Example:</strong> For the "Talent Acquisition Specialist," you
+          might ask, "What are the best ways to attract high-quality candidates
+          for a software engineering role?"
         </div>
       </div>
     ),
@@ -53,8 +53,8 @@ const instructionsList = [
         <div>
           <div className="flex">
             <li></li>
-            Example: With the "Talent Acquisition Specialist," you might
-            explore:
+            <strong>Example:</strong> With the "Talent Acquisition Specialist,"
+            you might explore:
           </div>
           <div className="flex flex-col pl-6 mt-4 gap-4">
             <div className="flex">
@@ -93,7 +93,7 @@ export default function GetStartedPage() {
   return (
     <>
       <GetStartedHero />
-      <div className="max-w-full mx-auto mt-2 p-4">
+      <div className="max-w-full mx-auto mt-12 p-4">
         {instructionsList.map((instruction, index) => (
           <div key={index} className="step mb-8">
             <div className="step-header flex items-center mb-2 gap-8">
