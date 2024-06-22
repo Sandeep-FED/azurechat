@@ -16,23 +16,27 @@ export const PromptCard: FC<Props> = (props) => {
   return (
     <Card
       key={prompt.id}
-      className="flex flex-col gap-4 h-auto items-start text-start justify-start dark:bg-opacity-5 dark:bg-[#FFFFFF]  dark:hover:border-fuchsia-400 hover:border-fuchsia-400"
+      className="flex flex-col h-auto items-start text-start justify-start dark:bg-opacity-5 dark:bg-[#FFFFFF]  dark:hover:border-fuchsia-400 hover:border-fuchsia-400"
     >
-      <CardHeader className="flex flex-row pb-0 w-full items-center">
-        <CardTitle className="flex-1 text-base">{prompt.name}</CardTitle>
+      <CardHeader className="flex flex-row pb-8 w-full items-start h-[85px] mb-4">
+        <CardTitle className="flex-1 text-base">
+          {prompt.name.length > 50
+            ? prompt.name.slice(0, 50).concat("...")
+            : prompt.name}
+        </CardTitle>
         {props.showContextMenu && (
           <div className="justify-end">
             <PromptCardContextMenu prompt={prompt} />
           </div>
         )}
       </CardHeader>
-      <CardContent className="content-stretch w-full gap-4 text-sm text-muted-foreground flex flex-col">
-        {prompt.description.length > 100
-          ? prompt.description.slice(0, 100).concat("...")
+      <CardContent className="content-stretch w-full gap-4 text-sm text-muted-foreground flex flex-col h-full pb-4 mb-4">
+        {prompt.description.length > 90
+          ? prompt.description.slice(0, 90).concat("...")
           : prompt.description}
         <Badge
           variant="outline"
-          className={`w-fit ${
+          className={`w-fit mt-auto  ${
             promptType === "General" ? "border-primary" : "border-fuchsia-400"
           }`}
         >
