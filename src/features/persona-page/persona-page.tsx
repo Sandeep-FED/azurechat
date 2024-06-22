@@ -48,7 +48,7 @@ export const ChatPersonaPage: FC<ChatPersonaProps> = async (props) => {
                 <PersonaCard
                   persona={persona}
                   key={persona.id}
-                  showContextMenu
+                  showContextMenu={user.isAdmin}
                 />
               );
             })}
