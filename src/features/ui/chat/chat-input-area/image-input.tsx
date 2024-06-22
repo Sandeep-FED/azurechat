@@ -27,7 +27,7 @@ export const ImageInput: FC = () => {
 
   return (
     <div className="flex gap-2">
-      {previewImage ? (
+      {previewImage && (
         <div className="relative overflow-hidden rounded-md w-[35px] h-[35px]">
           <Image src={previewImage} alt="Preview" fill={true} />
           <button
@@ -38,42 +38,41 @@ export const ImageInput: FC = () => {
             <X size={12} className="stroke-background" />
           </button>
         </div>
-      ) : (
-        <>
-          <input
-            type="hidden"
-            name="image-base64"
-            value={base64Image}
-            onChange={(e) => InputImageStore.UpdateBase64Image(e.target.value)}
-          />
-          <input
-            type="file"
-            accept="image/*"
-            name="image"
-            ref={fileInputRef}
-            className="hidden"
-            onChange={(e) => InputImageStore.OnFileChange(e)}
-          />
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  size="icon"
-                  variant={"ghost"}
-                  type="button"
-                  onClick={handleButtonClick}
-                  aria-label="Add an image to the chat input"
-                >
-                  <ImageIcon size={16} />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent align="start">
-                <p>Attach image to chat</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </>
       )}
+      <>
+        <input
+          type="hidden"
+          name="image-base64"
+          value={base64Image}
+          onChange={(e) => InputImageStore.UpdateBase64Image(e.target.value)}
+        />
+        <input
+          type="file"
+          accept="image/*"
+          name="image"
+          ref={fileInputRef}
+          className="hidden"
+          onChange={(e) => InputImageStore.OnFileChange(e)}
+        />
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                size="icon"
+                variant={"ghost"}
+                type="button"
+                onClick={handleButtonClick}
+                aria-label="Add an image to the chat input"
+              >
+                <ImageIcon size={16} />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent align="start">
+              <p>Attach image to chat</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </>
     </div>
   );
 };
