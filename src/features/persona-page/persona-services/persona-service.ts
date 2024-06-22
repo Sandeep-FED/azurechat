@@ -18,12 +18,21 @@ import { PERSONA_ATTRIBUTE, PersonaModel, PersonaModelSchema } from "./models";
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 
+import { UserContainer } from "@/features/common/services/cosmos";
+
 interface PersonaInput {
   name: string;
   description: string;
   personaMessage: string;
   department: string;
   isPublished: boolean;
+  isPinned: boolean;
+}
+interface PinnedPersona {
+  name: string;
+  description: string;
+  personaMessage: string;
+  department: string;
 }
 
 export const FindPersonaByID = async (
@@ -88,6 +97,7 @@ export const CreatePersona = async (
       personaMessage: props.personaMessage,
       department: props.department,
       isPublished: user.isAdmin ? props.isPublished : false,
+      isPinned: false,
       userId: await userHashedId(),
       createdAt: new Date(),
       type: "PERSONA",
@@ -314,10 +324,31 @@ export const FindAllPersonaForCurrentUser = async (
       .items.query<PersonaModel>(querySpec)
       .fetchAll();
 
-    return {
-      status: "OK",
-      response: resources,
-    };
+    // Filter resources to include only pinned personas
+    const pinnedPersonas: any = await GetPinnedPersonasForCurrentUser();
+
+    console.log(pinnedPersonas, "pinned personas");
+
+    if (pinnedPersonas.status !== "NOT_FOUND") {
+      // Filter resources to include only pinned personas
+      const pinnedIds = pinnedPersonas.response.map(
+        (persona: any) => persona.personaId
+      );
+
+      const sortedResources = resources.sort((a: any, b: any) => {
+        return pinnedIds.includes(a.id) ? -1 : 1;
+      });
+
+      return {
+        status: "OK",
+        response: sortedResources,
+      };
+    } else {
+      return {
+        status: "OK",
+        response: resources,
+      };
+    }
   } catch (error) {
     return {
       status: "ERROR",
@@ -389,3 +420,220 @@ export async function getAllDepartments(req: any) {
 
   return NextResponse.json({ data });
 }
+
+export const FindPinPersonaByID = async (
+  id: string
+): Promise<ServerActionResponse<any>> => {
+  try {
+    console.log("inside find pin persona by id", id);
+    const querySpec: SqlQuerySpec = {
+      query: `SELECT * FROM root r WHERE r.userId=@userId AND r.personaId=@personaId`,
+      parameters: [
+        {
+          name: "@userId",
+          value: await userHashedId(),
+        },
+        {
+          name: "@personaId",
+          value: id,
+        },
+      ],
+    };
+
+    const { resources } = await UserContainer()
+      .items.query<any>(querySpec)
+      .fetchAll();
+
+    console.log(resources, "resources");
+
+    if (resources.length === 0) {
+      return {
+        status: "NOT_FOUND",
+        errors: [
+          {
+            message: "Persona not found",
+          },
+        ],
+      };
+    }
+
+    return {
+      status: "OK",
+      response: resources[0],
+    };
+  } catch (error) {
+    return {
+      status: "ERROR",
+      errors: [
+        {
+          message: `Error creating persona: ${error}`,
+        },
+      ],
+    };
+  }
+};
+
+export const EnsurePinPersonaOperation = async (
+  personaId: string
+): Promise<ServerActionResponse<any>> => {
+  console.log("inside ensure pin persona operation");
+  const personaResponse = await FindPinPersonaByID(personaId);
+
+  console.log(personaResponse, "persona response");
+  const hashedId = await userHashedId();
+
+  if (personaResponse.status === "OK") {
+    return personaResponse;
+  }
+
+  return {
+    status: "UNAUTHORIZED",
+    errors: [
+      {
+        message: `Persona not found with id: ${personaId}`,
+      },
+    ],
+  };
+};
+
+export const CreatePersonaPin = async (
+  persona: any
+): Promise<ServerActionResponse<any>> => {
+  try {
+    const modelToSave = {
+      userId: await userHashedId(),
+      isPinned: true,
+      personaId: persona.id,
+    };
+
+    console.log("inside create persona pin");
+
+    const { resource } = await UserContainer().items.create<any>(modelToSave);
+
+    if (!resource) {
+      return {
+        status: "ERROR",
+        errors: [
+          {
+            message: "Failed to update persona",
+          },
+        ],
+      };
+    }
+
+    return {
+      status: "OK",
+      response: resource,
+    };
+  } catch (error) {
+    console.error("Error toggling persona pin:", error);
+    return {
+      status: "ERROR",
+      errors: [
+        {
+          message: `Error toggling persona pin: ${error}`,
+        },
+      ],
+    };
+  }
+};
+
+export const UpsertPersonaPin = async (
+  persona: any,
+  isPinned: boolean
+): Promise<ServerActionResponse<any>> => {
+  try {
+    const personaResponse = await EnsurePinPersonaOperation(persona.id);
+
+    if (personaResponse.status === "OK") {
+      const { response } = personaResponse;
+      const modelToUpdate = {
+        ...response,
+        isPinned: isPinned,
+      };
+
+      console.log("inside update persona pin");
+
+      const { resource } = await UserContainer().items.upsert<any>(
+        modelToUpdate
+      );
+
+      if (!resource) {
+        return {
+          status: "ERROR",
+          errors: [
+            {
+              message: "Failed to update persona",
+            },
+          ],
+        };
+      }
+
+      return {
+        status: "OK",
+        response: resource,
+      };
+    }
+    return personaResponse;
+  } catch (error) {
+    console.error("Error toggling persona pin:", error);
+    return {
+      status: "ERROR",
+      errors: [
+        {
+          message: `Error toggling persona pin: ${error}`,
+        },
+      ],
+    };
+  }
+};
+
+export const GetPinnedPersonasForCurrentUser = async (): Promise<
+  ServerActionResponse<any>
+> => {
+  try {
+    const querySpec: SqlQuerySpec = {
+      query:
+        "SELECT * FROM root r WHERE r.userId=@userId AND r.isPinned=@isPinned",
+      parameters: [
+        {
+          name: "@userId",
+          value: await userHashedId(),
+        },
+        {
+          name: "@isPinned",
+          value: true,
+        },
+      ],
+    };
+
+    const { resources } = await UserContainer()
+      .items.query<any>(querySpec)
+      .fetchAll();
+
+    if (resources.length === 0) {
+      return {
+        status: "NOT_FOUND",
+        errors: [
+          {
+            message: "Persona not found",
+          },
+        ],
+      };
+    }
+
+    return {
+      status: "OK",
+      response: resources,
+    };
+  } catch (error) {
+    return {
+      status: "ERROR",
+      errors: [
+        {
+          message: `Error creating persona: ${error}`,
+        },
+      ],
+    };
+  }
+};

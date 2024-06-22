@@ -9,6 +9,7 @@ import { FC } from "react";
 import { cn } from "@/ui/lib";
 import { ralewaySans } from "../../app/fonts";
 import { ViewAllPersonas } from "./view-all-persona/view-all-persona";
+import { GetPinnedPersonasForCurrentUser } from "../persona-page/persona-services/persona-service";
 
 interface ChatPersonaProps {
   personas: PersonaModel[];
@@ -16,7 +17,9 @@ interface ChatPersonaProps {
   redirectToPersona: any;
 }
 
-export const ChatHome: FC<ChatPersonaProps> = (props) => {
+export const ChatHome: FC<ChatPersonaProps> = async (props) => {
+  let pinnedPersonas: any = await GetPinnedPersonasForCurrentUser();
+
   return (
     <ScrollArea className="flex-1">
       <main className="flex flex-1 flex-col gap-6 dark:bg-opacity-25 dark:bg-[#262626] bg-[#FFFFFF] bg-opacity-25 m-4 rounded-lg border-0 pb-12 xl:h-screen h-auto">
@@ -45,6 +48,13 @@ export const ChatHome: FC<ChatPersonaProps> = (props) => {
                         persona={persona}
                         key={persona.id}
                         showContextMenu={false}
+                        pinnedPersonas={
+                          pinnedPersonas.response !== undefined
+                            ? pinnedPersonas.response.filter(
+                                (item: any) => item.personaId === persona.id
+                              )
+                            : []
+                        }
                       />
                     );
                   })}

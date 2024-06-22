@@ -5,6 +5,8 @@ const DB_NAME = process.env.AZURE_COSMOSDB_DB_NAME || "chat";
 const CONTAINER_NAME = process.env.AZURE_COSMOSDB_CONTAINER_NAME || "history";
 const CONFIG_CONTAINER_NAME =
   process.env.AZURE_COSMOSDB_CONFIG_CONTAINER_NAME || "config";
+const USERS_CONTAINER_NAME =
+  process.env.AZURE_COSMOSDB_USERS_CONTAINER_NAME || "users";
 
 export const CosmosInstance = () => {
   const endpoint = process.env.AZURE_COSMOSDB_URI;
@@ -30,5 +32,11 @@ export const HistoryContainer = () => {
   const client = CosmosInstance();
   const database = client.database(DB_NAME);
   const container = database.container(CONTAINER_NAME);
+  return container;
+};
+export const UserContainer = () => {
+  const client = CosmosInstance();
+  const database = client.database(DB_NAME);
+  const container = database.container(USERS_CONTAINER_NAME);
   return container;
 };

@@ -126,7 +126,6 @@ export const EnsurePromptOperation = async (
   promptId: string
 ): Promise<ServerActionResponse<PromptModel>> => {
   const promptResponse = await FindPromptByID(promptId);
-  const currentUser = await getCurrentUser();
 
   if (promptResponse.status === "OK") {
     // if (currentUser.isAdmin) {

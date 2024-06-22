@@ -10,13 +10,16 @@ import { PersonaModel } from "../persona-services/models";
 import { PersonaCardContextMenu } from "./persona-card-context-menu";
 import { ViewPersona } from "./persona-view";
 import { StartNewPersonaChat } from "./start-new-persona-chat";
+import { PersonaPin } from "./persona-pin";
+import { GetPinnedPersonasForCurrentUser } from "../persona-services/persona-service";
 
 interface Props {
   persona: PersonaModel;
   showContextMenu: boolean;
+  pinnedPersonas: any;
 }
 
-export const PersonaCard: FC<Props> = (props) => {
+export const PersonaCard: FC<Props> = async (props) => {
   const colors = [
     "#FFA51F",
     "#FF5F5F",
@@ -35,11 +38,14 @@ export const PersonaCard: FC<Props> = (props) => {
     colors[Math.floor(Math.random() * colors.length)];
 
   const { persona } = props;
+
+  console.log("persona card response", props.pinnedPersonas);
   return (
     <Card
       key={persona.id}
-      className="flex flex-col gap-4 h-auto items-start text-start justify-start dark:bg-opacity-5 dark:bg-[#FFFFFF]  dark:hover:border-fuchsia-400 hover:border-fuchsia-400"
+      className="flex flex-col gap-4 h-auto items-start text-start justify-start dark:bg-opacity-5 dark:bg-[#FFFFFF]  dark:hover:border-fuchsia-400 hover:border-fuchsia-400 relative"
     >
+      <PersonaPin persona={persona} pinnedPersonas={props.pinnedPersonas} />
       <CardHeader className="flex flex-row pb-0 w-full items-center">
         <CardTitle
           className="flex-1 text-base"

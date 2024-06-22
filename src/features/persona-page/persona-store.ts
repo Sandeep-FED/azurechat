@@ -3,6 +3,9 @@ import { RevalidateCache } from "../common/navigation-helpers";
 import { PERSONA_ATTRIBUTE, PersonaModel } from "./persona-services/models";
 import {
   CreatePersona,
+  CreatePersonaPin,
+  EnsurePinPersonaOperation,
+  UpsertPersonaPin,
   UpsertPersona,
 } from "./persona-services/persona-service";
 
@@ -15,6 +18,7 @@ class PersonaState {
     personaMessage: "",
     createdAt: new Date(),
     isPublished: false,
+    isPinned: false,
     type: "PERSONA",
     userId: "",
   };
@@ -22,6 +26,7 @@ class PersonaState {
   public isOpened: boolean = false;
   public errors: string[] = [];
   public persona: PersonaModel = { ...this.defaultModel };
+  public pinnedPersonas: string[] = [];
 
   public updateOpened(value: boolean) {
     this.isOpened = value;
@@ -57,6 +62,16 @@ class PersonaState {
 
   public updateErrors(errors: string[]) {
     this.errors = errors;
+  }
+
+  // Method to toggle pinned status
+  public togglePinned(personaId: string) {
+    const index = this.pinnedPersonas.indexOf(personaId);
+    if (index === -1) {
+      this.pinnedPersonas.push(personaId);
+    } else {
+      this.pinnedPersonas.splice(index, 1);
+    }
   }
 }
 
@@ -97,5 +112,31 @@ export const FormDataToPersonaModel = (formData: FormData): PersonaModel => {
     userId: "", // the user id is set on the server once the user is authenticated
     createdAt: new Date(),
     type: PERSONA_ATTRIBUTE,
+    isPinned: false,
   };
+};
+
+export const addOrUpdatePinPersona = async (
+  persona: any,
+  isPinned: boolean
+) => {
+  personaStore.updateErrors([]);
+
+  let isPersonaForCurrentUserExist = await EnsurePinPersonaOperation(
+    persona.id
+  );
+
+  console.log(isPersonaForCurrentUserExist, "isPersonaForCurrentUserExist ");
+
+  const response =
+    isPersonaForCurrentUserExist.status === "UNAUTHORIZED"
+      ? await CreatePersonaPin(persona)
+      : await UpsertPersonaPin(persona, isPinned);
+
+  if (response.status === "OK") {
+    console.log("Persona pinned successfully");
+  } else {
+    personaStore.updateErrors(response.errors.map((e) => e.message));
+  }
+  return response;
 };
