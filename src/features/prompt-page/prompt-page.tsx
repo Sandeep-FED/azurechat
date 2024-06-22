@@ -6,7 +6,8 @@ import { AddPromptSlider } from "./add-new-prompt";
 import { PromptCard } from "./prompt-card";
 import { PromptHero } from "./prompt-hero/prompt-hero";
 import { FindAllPrompts } from "./prompt-service";
-import { getCurrentUser } from "../auth-page/helpers";
+import { getCurrentUser, userHashedId } from "../auth-page/helpers";
+import { Info } from "lucide-react";
 
 interface ChatSamplePromptProps {}
 
@@ -21,6 +22,8 @@ export const ChatSamplePromptPage: FC<ChatSamplePromptProps> = async (
 
   const user = await getCurrentUser();
 
+  const userId = await userHashedId();
+
   return (
     <ScrollArea className="flex-1 h-full">
       <main className="flex flex-1 flex-col dark:bg-opacity-25 dark:bg-[#262626] bg-[#FFFFFF] bg-opacity-25 m-4 rounded-lg border-0 min-h-screen gap-8">
@@ -29,13 +32,26 @@ export const ChatSamplePromptPage: FC<ChatSamplePromptProps> = async (
           <h2 className="text-base font-semibold mb-4 text-primary">
             Prompts List
           </h2>
-          <div className="grid grid-cols-3 gap-3">
-            {promptsResponse.response.map((prompt) => {
-              return (
-                <PromptCard prompt={prompt} key={prompt.id} showContextMenu />
-              );
-            })}
-          </div>
+          {promptsResponse.response.length !== 0 ? (
+            <div className="grid grid-cols-3 gap-3">
+              {promptsResponse.response.map((prompt) => {
+                return (
+                  <PromptCard
+                    prompt={prompt}
+                    key={prompt.id}
+                    showContextMenu={prompt.userId === userId || user.isAdmin}
+                  />
+                );
+              })}
+            </div>
+          ) : (
+            <h2 className="text-base font-semibold mt-12  text-muted-foreground text-center">
+              <span className="flex items-center justify-center gap-2">
+                <Info />
+                No prompts found
+              </span>
+            </h2>
+          )}
         </div>
         <AddPromptSlider />
       </main>
