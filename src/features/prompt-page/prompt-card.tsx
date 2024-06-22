@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { PromptModel } from "./models";
 import { PromptCardContextMenu } from "./prompt-card-context-menu";
+import { Badge } from "../ui/badge";
 
 interface Props {
   prompt: PromptModel;
@@ -9,6 +10,8 @@ interface Props {
 }
 
 export const PromptCard: FC<Props> = (props) => {
+  const promptType = props.prompt.isPublished ? "General" : "My Prompt";
+
   const { prompt } = props;
   return (
     <Card
@@ -18,15 +21,23 @@ export const PromptCard: FC<Props> = (props) => {
       <CardHeader className="flex flex-row pb-0 w-full items-center">
         <CardTitle className="flex-1 text-base">{prompt.name}</CardTitle>
         {props.showContextMenu && (
-          <div>
+          <div className="justify-end">
             <PromptCardContextMenu prompt={prompt} />
           </div>
         )}
       </CardHeader>
-      <CardContent className="content-stretch w-full gap-4 text-sm text-muted-foreground">
+      <CardContent className="content-stretch w-full gap-4 text-sm text-muted-foreground flex flex-col">
         {prompt.description.length > 100
           ? prompt.description.slice(0, 100).concat("...")
           : prompt.description}
+        <Badge
+          variant="outline"
+          className={`w-fit ${
+            promptType === "General" ? "border-primary" : "border-fuchsia-400"
+          }`}
+        >
+          {promptType}
+        </Badge>
       </CardContent>
     </Card>
   );
