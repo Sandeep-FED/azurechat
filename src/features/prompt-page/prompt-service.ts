@@ -20,16 +20,16 @@ export const CreatePrompt = async (
   try {
     const user = await getCurrentUser();
 
-    if (!user.isAdmin) {
-      return {
-        status: "UNAUTHORIZED",
-        errors: [
-          {
-            message: `Unable to create prompt`,
-          },
-        ],
-      };
-    }
+    // if (!user.isAdmin) {
+    //   return {
+    //     status: "UNAUTHORIZED",
+    //     errors: [
+    //       {
+    //         message: `Unable to create prompt`,
+    //       },
+    //     ],
+    //   };
+    // }
 
     const modelToSave: PromptModel = {
       id: uniqueId(),
@@ -83,11 +83,21 @@ export const FindAllPrompts = async (): Promise<
 > => {
   try {
     const querySpec: SqlQuerySpec = {
-      query: "SELECT * FROM root r WHERE r.type=@type",
+      query: `SELECT * FROM root r WHERE r.type=@type 
+        AND (r.isPublished=@isPublished OR r.userId=@userId)
+      `,
       parameters: [
         {
           name: "@type",
           value: PROMPT_ATTRIBUTE,
+        },
+        {
+          name: "@isPublished",
+          value: true,
+        },
+        {
+          name: "@userId",
+          value: await userHashedId(),
         },
       ],
     };
@@ -119,9 +129,9 @@ export const EnsurePromptOperation = async (
   const currentUser = await getCurrentUser();
 
   if (promptResponse.status === "OK") {
-    if (currentUser.isAdmin) {
-      return promptResponse;
-    }
+    // if (currentUser.isAdmin) {
+    return promptResponse;
+    // }
   }
 
   return {
