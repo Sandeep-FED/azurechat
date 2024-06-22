@@ -59,7 +59,7 @@ export const PersonaCard: FC<Props> = (props) => {
           : persona.description}
       </CardContent>
       <CardFooter className="content-stretch w-full gap-4">
-        {props.showContextMenu && <ViewPersona persona={persona} />}
+        <ViewPersona persona={persona} />
 
         <StartNewPersonaChat persona={persona} />
       </CardFooter>
