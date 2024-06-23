@@ -21,6 +21,7 @@ class PersonaState {
     isPinned: false,
     type: "PERSONA",
     userId: "",
+    personaIcon: "",
   };
 
   public isOpened: boolean = false;
@@ -111,8 +112,9 @@ export const FormDataToPersonaModel = (formData: FormData): PersonaModel => {
     isPublished: formData.get("isPublished") === "on" ? true : false,
     userId: "", // the user id is set on the server once the user is authenticated
     createdAt: new Date(),
-    type: PERSONA_ATTRIBUTE,
+    personaIcon: formData.get("image-base64") as unknown as string,
     isPinned: false,
+    type: PERSONA_ATTRIBUTE,
   };
 };
 

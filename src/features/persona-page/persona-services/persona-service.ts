@@ -27,6 +27,7 @@ interface PersonaInput {
   department: string;
   isPublished: boolean;
   isPinned: boolean;
+  personaIcon: string;
 }
 interface PinnedPersona {
   name: string;
@@ -101,6 +102,7 @@ export const CreatePersona = async (
       userId: await userHashedId(),
       createdAt: new Date(),
       type: "PERSONA",
+      personaIcon: props.personaIcon,
     };
 
     const valid = ValidateSchema(modelToSave);
@@ -213,6 +215,7 @@ export const UpsertPersona = async (
           ? personaInput.isPublished
           : persona.isPublished,
         createdAt: new Date(),
+        personaIcon: personaInput.personaIcon,
       };
 
       const validationResponse = ValidateSchema(modelToUpdate);

@@ -30,4 +30,5 @@ export const PersonaModelSchema = z.object({
   type: z.literal(PERSONA_ATTRIBUTE),
   createdAt: z.date(),
   isPinned: z.boolean(),
+  personaIcon: z.string(),
 });

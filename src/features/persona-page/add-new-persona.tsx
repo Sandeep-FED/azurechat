@@ -30,6 +30,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/features/ui/select";
+import { IconUpload } from "./icon-upload";
 
 interface Props {
   departments: any;
@@ -90,6 +91,10 @@ export const AddNewPersona: FC<Props> = (props) => {
                     ))}
                 </>
               )}
+              <div className="grid gap-2">
+                <Label>Pick Icon</Label>
+                <IconUpload />
+              </div>
               <div className="grid gap-2">
                 <Label>Name</Label>
                 <Input

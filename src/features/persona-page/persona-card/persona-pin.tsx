@@ -42,16 +42,19 @@ export const PersonaPin: FC<Props> = (props) => {
 
   return (
     <>
-      <Button
-        className="rounded-full absolute -top-6 left-2"
-        onClick={handlePinToggle}
-      >
-        {isPinned ? (
-          <PinOff size={15} className="text-white" />
-        ) : (
-          <Pin size={15} className="text-white" />
-        )}
-      </Button>
+      {isPinned ? (
+        <PinOff
+          size={17}
+          className="dark:text-white text-black cursor-pointer"
+          onClick={handlePinToggle}
+        />
+      ) : (
+        <Pin
+          size={18}
+          className="dark:text-white text-black cursor-pointer"
+          onClick={handlePinToggle}
+        />
+      )}
     </>
   );
 };

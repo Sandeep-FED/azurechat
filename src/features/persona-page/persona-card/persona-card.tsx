@@ -11,7 +11,7 @@ import { PersonaCardContextMenu } from "./persona-card-context-menu";
 import { ViewPersona } from "./persona-view";
 import { StartNewPersonaChat } from "./start-new-persona-chat";
 import { PersonaPin } from "./persona-pin";
-import { GetPinnedPersonasForCurrentUser } from "../persona-services/persona-service";
+import Image from "next/image";
 
 interface Props {
   persona: PersonaModel;
@@ -45,19 +45,35 @@ export const PersonaCard: FC<Props> = async (props) => {
       key={persona.id}
       className="flex flex-col gap-4 h-auto items-start text-start justify-start dark:bg-opacity-5 dark:bg-[#FFFFFF]  dark:hover:border-fuchsia-400 hover:border-fuchsia-400 relative"
     >
-      <PersonaPin persona={persona} pinnedPersonas={props.pinnedPersonas} />
-      <CardHeader className="flex flex-row pb-0 w-full items-center">
-        <CardTitle
-          className="flex-1 text-base"
-          style={{ color: getRandomColor() }}
-        >
-          {persona.name}
-        </CardTitle>
-        {props.showContextMenu && (
-          <div>
-            <PersonaCardContextMenu persona={persona} />
+      <CardHeader className="flex flex-col w-full">
+        <div className="flex flex-row pb-1 w-full items-center justify-between">
+          <Image
+            src={persona.personaIcon}
+            alt="Persona Icon"
+            width={25}
+            height={25}
+            quality={100}
+          />
+          <div className="flex gap-4">
+            <PersonaPin
+              persona={persona}
+              pinnedPersonas={props.pinnedPersonas}
+            />
+            {props.showContextMenu && (
+              <div>
+                <PersonaCardContextMenu persona={persona} />
+              </div>
+            )}
           </div>
-        )}
+        </div>
+        <div>
+          <CardTitle
+            className="flex-1 text-base"
+            style={{ color: getRandomColor() }}
+          >
+            {persona.name}
+          </CardTitle>
+        </div>
       </CardHeader>
       <CardContent className="text-muted-foreground flex-1 text-sm">
         {persona.description.length > 100
