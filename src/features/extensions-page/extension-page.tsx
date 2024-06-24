@@ -18,7 +18,7 @@ export const ExtensionPage: FC<Props> = async (props) => {
       <main className="flex flex-1 flex-col dark:bg-opacity-25 dark:bg-[#262626] bg-[#FFFFFF] bg-opacity-25 m-4 rounded-lg border-0 min-h-screen gap-8">
         <ExtensionHero user={user} />
         <div className="container max-w-4xl py-3 pb-16">
-          <h2 className="text-base font-semibold mb-4 text-primary">
+          <h2 className="text-lg font-semibold mb-4 text-primary">
             Extensions List
           </h2>
           <div className="grid grid-cols-3 gap-3">
