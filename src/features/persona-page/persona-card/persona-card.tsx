@@ -51,6 +51,7 @@ export const PersonaCard: FC<Props> = async (props) => {
             src={persona.personaIcon}
             alt="Persona Icon"
             width={25}
+            className="dark:invert brightness-0"
             height={25}
             quality={100}
           />

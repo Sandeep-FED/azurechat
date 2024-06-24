@@ -32,7 +32,10 @@ export const PersonaCardContextMenu: FC<Props> = (props) => {
           {isLoading ? (
             <LoadingIndicator isLoading={isLoading} />
           ) : (
-            <MoreVertical size={18} />
+            <MoreVertical
+              size={18}
+              className="dark:text-gray-500 text-gray-400"
+            />
           )}
         </DropdownMenuTrigger>
         <DropdownMenuContent>
