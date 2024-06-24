@@ -1,10 +1,10 @@
 "use client";
 
-import { Button } from "@/features/ui/button";
 import { FC, useEffect, useState } from "react";
 import { PersonaModel } from "../persona-services/models";
 import { Pin, PinOff } from "lucide-react";
 import { addOrUpdatePinPersona } from "../persona-store";
+import { LoadingIndicator } from "@/features/ui/loading";
 
 interface Props {
   persona: PersonaModel;
@@ -13,15 +13,15 @@ interface Props {
 
 export const PersonaPin: FC<Props> = (props) => {
   const [isPinned, setIsPinned] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handlePinToggle = async () => {
     try {
-      const action = isPinned ? "unpin" : "pin";
-      window.alert(`Do you want to ${action} ${props.persona.name} persona?`);
+      setIsLoading(true);
       const response = await addOrUpdatePinPersona(props.persona, !isPinned);
       if (response.status === "OK") {
         setIsPinned(!isPinned);
-        window.alert(`${props.persona.name} persona pinned successfully`);
+        setIsLoading(false);
         window.location.reload();
       }
     } catch (error) {
@@ -43,15 +43,21 @@ export const PersonaPin: FC<Props> = (props) => {
   return (
     <>
       {isPinned ? (
-        <PinOff
-          size={17}
-          className="dark:text-white text-black cursor-pointer"
-          onClick={handlePinToggle}
-        />
+        isLoading ? (
+          <LoadingIndicator isLoading={isLoading} />
+        ) : (
+          <PinOff
+            size={17}
+            className="dark:text-gray-500 text-gray-400 cursor-pointer"
+            onClick={handlePinToggle}
+          />
+        )
+      ) : isLoading ? (
+        <LoadingIndicator isLoading={isLoading} />
       ) : (
         <Pin
           size={18}
-          className="dark:text-white text-black cursor-pointer"
+          className="dark:text-gray-500 text-gray-400 cursor-pointer"
           onClick={handlePinToggle}
         />
       )}
