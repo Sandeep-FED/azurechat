@@ -1,5 +1,6 @@
 import { Raleway } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
 
 export const ralewaySans = Raleway({
   subsets: ["latin"],
@@ -8,3 +9,4 @@ export const ralewaySans = Raleway({
 });
 
 export const geistMono = GeistMono;
+export const geistSans = GeistSans;

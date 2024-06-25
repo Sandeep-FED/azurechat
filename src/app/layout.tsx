@@ -2,7 +2,7 @@ import { AI_NAME } from "@/features/theme/theme-config";
 import { ThemeProvider } from "@/features/theme/theme-provider";
 import { Toaster } from "@/features/ui/toaster";
 import { cn } from "@/ui/lib";
-import { geistMono } from "./fonts";
+import { geistSans } from "./fonts";
 import "./globals.css";
 
 export const metadata = {
@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en" className="h-full w-full overflow-hidden text-sm">
       <body
         className={cn(
-          geistMono.className,
+          geistSans.className,
           "h-full w-full flex bg-background antialiased"
         )}
       >
