@@ -48,7 +48,7 @@ export const PersonaPin: FC<Props> = (props) => {
         ) : (
           <PinOff
             size={17}
-            className="dark:text-gray-500 text-gray-400 cursor-pointer"
+            className="dark:text-gray-200 text-gray-400 cursor-pointer"
             onClick={handlePinToggle}
           />
         )
@@ -57,7 +57,7 @@ export const PersonaPin: FC<Props> = (props) => {
       ) : (
         <Pin
           size={18}
-          className="dark:text-gray-500 text-gray-400 cursor-pointer"
+          className="dark:text-gray-200 text-gray-400 cursor-pointer"
           onClick={handlePinToggle}
         />
       )}

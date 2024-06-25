@@ -34,7 +34,7 @@ export const PersonaCardContextMenu: FC<Props> = (props) => {
           ) : (
             <MoreVertical
               size={18}
-              className="dark:text-gray-500 text-gray-400"
+              className="dark:text-gray-200 text-gray-400"
             />
           )}
         </DropdownMenuTrigger>
