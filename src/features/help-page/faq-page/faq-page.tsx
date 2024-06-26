@@ -9,34 +9,34 @@ import { FAQHero } from "../faq-hero/faq-hero";
 
 const faqs = [
   {
-    question: "1. What is QBot?",
+    question: "1. What is Intellient?",
     answer:
-      "QBot is Quadra’s enterprise AI assistant powered by Azure OpenAI Services. It provides intelligent support through chat, personalized interactions, and a range of AI-driven functionalities to streamline tasks and boost productivity.",
+      "Intellient is Quadra’s enterprise AI assistant powered by Azure OpenAI Services. It provides intelligent support through chat, personalized interactions, and a range of AI-driven functionalities to streamline tasks and boost productivity.",
   },
   {
-    question: "2. How does QBot enhance my daily tasks?",
+    question: "2. How does Intellient enhance my daily tasks?",
     answer:
-      "QBot assists with automating repetitive tasks, generating content, and providing insights tailored to your role and department. It integrates seamlessly with your existing workflows and tools.",
+      "Intellient assists with automating repetitive tasks, generating content, and providing insights tailored to your role and department. It integrates seamlessly with your existing workflows and tools.",
   },
   {
-    question: "3. Can QBot generate images?",
+    question: "3. Can Intellient generate images?",
     answer:
-      "Yes, QBot can create images using DALL-E 3, an AI model that generates high-quality visuals from textual descriptions. You can request custom images for presentations, reports, or creative projects.",
+      "Yes, Intellient can create images using DALL-E 3, an AI model that generates high-quality visuals from textual descriptions. You can request custom images for presentations, reports, or creative projects.",
   },
   {
-    question: "4. Can QBot chat with your file?",
+    question: "4. Can Intellient chat with your file?",
     answer:
-      "QBot can analyze and provide insights from your files. Simply upload a document or dataset, and QBot will help you understand its content, answer questions about it, and extract key information.",
+      "Intellient can analyze and provide insights from your files. Simply upload a document or dataset, and Intellient will help you understand its content, answer questions about it, and extract key information.",
   },
   {
     question: "5. What are Extensions and how do they work?",
     answer:
-      "Extensions enhance QBot's functionality by integrating it with internal APIs or external resources. Created using OpenAI Tools and Function Calling, these extensions allow QBot to perform specific tasks like fetching data from a CRM or automating a workflow.",
+      "Extensions enhance Intellient's functionality by integrating it with internal APIs or external resources. Created using OpenAI Tools and Function Calling, these extensions allow Intellient to perform specific tasks like fetching data from a CRM or automating a workflow.",
   },
   {
     question: "6. What is the Prompt Library?",
     answer:
-      "The Prompt Library is a collection of predefined prompt templates designed to help users interact more effectively with QBot. These templates provide a starting point for generating content, asking questions, or performing tasks, making it easier to harness QBot's capabilities without starting from scratch.",
+      "The Prompt Library is a collection of predefined prompt templates designed to help users interact more effectively with Intellient. These templates provide a starting point for generating content, asking questions, or performing tasks, making it easier to harness Intellient's capabilities without starting from scratch.",
   },
   {
     question: "7. How can I report a bug, issue or feature request?",

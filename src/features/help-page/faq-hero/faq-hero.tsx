@@ -14,7 +14,7 @@ export const FAQHero = (props: FAQHeroProps) => {
           Questions
         </>
       }
-      description={`Discover quick answers to common questions about QBot, Quadra’s enterprise AI assistant. This FAQ guide helps you efficiently navigate and leverage QBot’s powerful features to boost productivity.`}
+      description={`Discover quick answers to common questions about Intellient, Quadra’s enterprise AI assistant. This FAQ guide helps you efficiently navigate and leverage Intellient’s powerful features to boost productivity.`}
     ></Hero>
   );
 };
