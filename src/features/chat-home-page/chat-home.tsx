@@ -26,7 +26,7 @@ export const ChatHome: FC<ChatPersonaProps> = async (props) => {
         <Hero
           title={
             <>
-              <div className="dark:bg-[url('/QBot_Dark_Icon.svg')] bg-[url('/QBot_Light_Icon.svg')] w-[60px] h-[60px] bg-cover"></div>
+              <div className="dark:bg-[url('/Intellient_Dark_Icon.png')] bg-[url('/Intellient_Light_Icon.png')] w-[60px] h-[60px] bg-cover"></div>
               <span className={cn(ralewaySans.className)}>{AI_NAME}</span>
             </>
           }

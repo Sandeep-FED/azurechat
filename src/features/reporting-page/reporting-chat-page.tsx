@@ -19,7 +19,9 @@ export default function ReportingChatPage(props: ReportingChatPageProps) {
   const { theme } = useTheme();
 
   const botIcon =
-    theme === "dark" ? "/QBot_Dark_Icon.svg" : "/QBot_Light_Icon.svg";
+    theme === "dark"
+      ? "/Intellient_Dark_Icon.png"
+      : "/Intellient_Light_Icon.png";
 
   return (
     <main className="flex flex-1 relative flex-col">

@@ -32,7 +32,7 @@ export const LogIn: FC<LoginProps> = (props) => {
   }
 
   const botIcon =
-    theme === "dark" ? "QBot_Dark_Icon.svg" : "QBot_Light_Icon.svg";
+    theme === "dark" ? "Intellient_Dark_Icon.png" : "Intellient_Light_Icon.png";
 
   return (
     <>
@@ -72,10 +72,11 @@ export const LogIn: FC<LoginProps> = (props) => {
         />
         <Card className="bg-[#E32FAB] bg-opacity-25 border-solid border-white border-opacity-20 backdrop-blur-[8px] m-8 pt-8 pl-8 h-full">
           <CardTitle className="text-3xl text-white">
-            Welcome to QBot!
+            Welcome to Intellient!
           </CardTitle>
           <CardDescription className="text-white pt-3 pr-4 font-thin text-base">
-            QBot is here to assist with your tasks quickly and efficiently.
+            Intellient is here to assist with your tasks quickly and
+            efficiently.
           </CardDescription>
           <img
             src={"login_ilustration3.svg"}
