@@ -44,7 +44,7 @@ export const LogIn: FC<LoginProps> = (props) => {
           </p>
         </div>
         <div className="flex flex-col items-center mt-8 gap-4">
-          <p>Login in with your Microsoft 365 account</p>
+          <p>Login</p>
           <Button
             onClick={() => signIn("azure-ad")}
             className="dark:bg-white dark:hover:bg-primary hover:text-white bg-primary"
@@ -70,14 +70,18 @@ export const LogIn: FC<LoginProps> = (props) => {
           className="absolute bottom-0"
           width="400px"
         />
-        <Card className="bg-[#E32FAB] bg-opacity-25 border-solid border-white border-opacity-20 backdrop-blur-[8px] m-8 pt-8 pl-8 h-full">
-          <CardTitle className="text-3xl text-white">
-            Welcome to Intellient!
+        <Card className="bg-[#E32FAB] bg-opacity-25 border-solid border-white border-opacity-20 backdrop-blur-[8px] m-8 pt-8 px-8 h-full relative">
+          <CardTitle className="text-2xl text-white">
+            Where AI meets enterprise agility
           </CardTitle>
           <CardDescription className="text-white pt-3 pr-4 font-thin text-base">
-            Intellient is here to assist with your tasks quickly and
-            efficiently.
+            Pave the way for true organizational intelligence.
           </CardDescription>
+          <img
+            src={"Quadra_Light_Logo.png"}
+            className="absolute left-8 bottom-8"
+            width={100}
+          />
           <img
             src={"login_ilustration3.svg"}
             className="absolute right-4 -bottom-2 h-3/4 xl:h-3/5"

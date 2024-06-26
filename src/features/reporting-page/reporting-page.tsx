@@ -25,7 +25,8 @@ interface ChatReportingProps {
 export const ChatReportingPage: FC<ChatReportingProps> = async (props) => {
   return (
     <ScrollArea className="flex-1 h-full">
-      <main className="flex flex-1 flex-col dark:bg-opacity-25 dark:bg-[#262626] bg-[#FFFFFF] bg-opacity-25 m-4 rounded-lg border-0 min-h-screen">
+      <main className="flex flex-1 flex-col dark:bg-opacity-25 dark:bg-[#262626] bg-[#FFFFFF] bg-opacity-25 m-4 rounded-lg border-0 min-h-screen relative">
+        <div className="dark:bg-[url('/Quadra_Light_Logo.png')] bg-[url('/Quadra_Dark_Logo.png')] w-28 h-8 bg-contain bg-no-repeat absolute top-8 right-8"></div>
         <ReportingHero />
         <Suspense fallback={<PageLoader />} key={props.page}>
           <ReportingContent {...props} />

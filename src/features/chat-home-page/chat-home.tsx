@@ -22,7 +22,8 @@ export const ChatHome: FC<ChatPersonaProps> = async (props) => {
 
   return (
     <ScrollArea className="flex-1">
-      <main className="flex flex-1 flex-col gap-6 dark:bg-opacity-25 dark:bg-[#262626] bg-[#FFFFFF] bg-opacity-25 m-4 rounded-lg border-0 pb-12 xl:h-screen h-auto">
+      <main className="flex flex-1 flex-col gap-6 dark:bg-opacity-25 dark:bg-[#262626] bg-[#FFFFFF] bg-opacity-25 m-4 rounded-lg border-0 pb-12 xl:h-screen h-auto relative">
+        <div className="dark:bg-[url('/Quadra_Light_Logo.png')] bg-[url('/Quadra_Dark_Logo.png')] w-28 h-8 bg-contain bg-no-repeat absolute top-8 right-8"></div>
         <Hero
           title={
             <>
