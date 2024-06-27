@@ -28,11 +28,11 @@ export const IconUpload: FC = () => {
         <div className="relative overflow-hidden rounded-md w-[35px] h-[35px]">
           <Image src={previewImage} alt="Preview" fill={true} />
           <button
-            className="absolute right-1 top-1 bg-background/20 rounded-full p-[2px]"
+            className="absolute right-1 top-1 dark:bg-slate-100 bg-gray-500/50 rounded-full p-[2px]"
             onClick={resetFileInput}
             aria-label="Remove icon"
           >
-            <X size={12} className="stroke-background" />
+            <X size={12} className="dark:stroke-black stroke-white" />
           </button>
         </div>
       )}
