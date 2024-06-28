@@ -30,38 +30,43 @@ export const ChatHeader: FC<Props> = (props) => {
             <span>{props.chatThread.name}</span>
           ) : (
             <div className="flex gap-4">
-              <div className="w-12 h-12 rounded-full dark:bg-white/10 bg-sky-100 flex items-center justify-center top-11">
-                <Image
-                  src={props.chatThread.personaIcon}
-                  alt="persona icon"
-                  width={25}
-                  height={25}
-                />
-              </div>
-              <div className="flex flex-col gap-1">
-                <span>{props.chatThread.name}</span>
-                {props.chatThread.personaShortDescription.length > 70 ? (
-                  <div className="flex items-center">
-                    <p className="text-muted-foreground text-sm font-light">
-                      {props.chatThread.personaShortDescription
-                        .slice(0, 70)
-                        .concat("...")}{" "}
-                    </p>
-                    <Popover>
-                      <PopoverTrigger>
-                        <InfoIcon size={16} className="ml-1" />
-                      </PopoverTrigger>
-                      <PopoverContent className="text-sm font-light text-muted-foreground">
-                        {props.chatThread.personaShortDescription}
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-                ) : (
-                  <p className="text-muted-foreground text-sm font-light">
-                    {props.chatThread.personaShortDescription}
-                  </p>
+              {props.chatThread.personaIcon &&
+                props.chatThread.personaShortDescription && (
+                  <>
+                    <div className="w-12 h-12 rounded-full dark:bg-white/10 bg-sky-100 flex items-center justify-center top-11">
+                      <Image
+                        src={props.chatThread?.personaIcon}
+                        alt="persona icon"
+                        width={25}
+                        height={25}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span>{props.chatThread.name}</span>
+                      {props.chatThread.personaShortDescription.length > 70 ? (
+                        <div className="flex items-center">
+                          <p className="text-muted-foreground text-sm font-light">
+                            {props.chatThread.personaShortDescription
+                              .slice(0, 70)
+                              .concat("...")}{" "}
+                          </p>
+                          <Popover>
+                            <PopoverTrigger>
+                              <InfoIcon size={16} className="ml-1" />
+                            </PopoverTrigger>
+                            <PopoverContent className="text-sm font-light text-muted-foreground">
+                              {props.chatThread.personaShortDescription}
+                            </PopoverContent>
+                          </Popover>
+                        </div>
+                      ) : (
+                        <p className="text-muted-foreground text-sm font-light">
+                          {props.chatThread.personaShortDescription}
+                        </p>
+                      )}
+                    </div>
+                  </>
                 )}
-              </div>
             </div>
           )}
           {props.chatThread.personaMessageTitle === "Quadra GPT" && (
