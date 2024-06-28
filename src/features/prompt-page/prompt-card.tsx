@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const PromptCard: FC<Props> = (props) => {
-  const promptType = props.prompt.isPublished ? "Org - Wide" : "Custom Prompt";
+  const promptType = props.prompt.isPublished ? "Global" : "Personal";
 
   const { prompt } = props;
   return (
@@ -37,9 +37,7 @@ export const PromptCard: FC<Props> = (props) => {
         <Badge
           variant="outline"
           className={`w-fit mt-auto  ${
-            promptType === "Org - Wide"
-              ? "border-primary"
-              : "border-fuchsia-400"
+            promptType === "Global" ? "border-primary" : "border-fuchsia-400"
           }`}
         >
           {promptType}
