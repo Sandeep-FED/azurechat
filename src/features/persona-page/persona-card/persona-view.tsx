@@ -28,18 +28,9 @@ export const ViewPersona: FC<Props> = (props) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button variant={"outline"}>
-                <Info size={18} />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>View persona details</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <Button variant={"outline"} title="Show message">
+          <Info size={18} />
+        </Button>
       </SheetTrigger>
       <SheetContent className="min-w-[480px] sm:w-[540px]">
         <SheetHeader>
