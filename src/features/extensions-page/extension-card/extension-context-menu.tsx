@@ -13,6 +13,12 @@ import {
 import { DeleteExtension } from "../extension-services/extension-service";
 import { ExtensionModel } from "../extension-services/models";
 import { extensionStore } from "../extension-store";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/features/ui/tooltip";
 
 interface Props {
   extension: ExtensionModel;
@@ -32,7 +38,19 @@ export const ExtensionCardContextMenu: FC<Props> = (props) => {
           {isLoading ? (
             <LoadingIndicator isLoading={isLoading} />
           ) : (
-            <MoreVertical size={18} />
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <MoreVertical
+                    size={18}
+                    className="dark:text-gray-200 text-gray-400"
+                  />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>More options</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           )}
         </DropdownMenuTrigger>
         <DropdownMenuContent>

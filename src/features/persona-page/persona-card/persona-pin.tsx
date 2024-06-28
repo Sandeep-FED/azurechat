@@ -5,6 +5,12 @@ import { PersonaModel } from "../persona-services/models";
 import { Pin, PinOff } from "lucide-react";
 import { addOrUpdatePinPersona } from "../persona-store";
 import { LoadingIndicator } from "@/features/ui/loading";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/features/ui/tooltip";
 
 interface Props {
   persona: PersonaModel;
@@ -46,20 +52,38 @@ export const PersonaPin: FC<Props> = (props) => {
         isLoading ? (
           <LoadingIndicator isLoading={isLoading} />
         ) : (
-          <PinOff
-            size={17}
-            className="dark:text-gray-200 text-gray-400 cursor-pointer"
-            onClick={handlePinToggle}
-          />
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <PinOff
+                  size={17}
+                  className="dark:text-gray-200 text-gray-400 cursor-pointer"
+                  onClick={handlePinToggle}
+                />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Unpin persona</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         )
       ) : isLoading ? (
         <LoadingIndicator isLoading={isLoading} />
       ) : (
-        <Pin
-          size={18}
-          className="dark:text-gray-200 text-gray-400 cursor-pointer"
-          onClick={handlePinToggle}
-        />
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Pin
+                size={18}
+                className="dark:text-gray-200 text-gray-400 cursor-pointer"
+                onClick={handlePinToggle}
+              />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Pin persona</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       )}
     </>
   );

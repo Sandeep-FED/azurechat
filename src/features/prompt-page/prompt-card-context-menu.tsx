@@ -13,6 +13,12 @@ import { LoadingIndicator } from "../ui/loading";
 import { PromptModel } from "./models";
 import { DeletePrompt } from "./prompt-service";
 import { promptStore } from "./prompt-store";
+import {
+  Tooltip,
+  TooltipProvider,
+  TooltipTrigger,
+  TooltipContent,
+} from "../ui/tooltip";
 
 interface Props {
   prompt: PromptModel;
@@ -32,7 +38,19 @@ export const PromptCardContextMenu: FC<Props> = (props) => {
           {isLoading ? (
             <LoadingIndicator isLoading={isLoading} />
           ) : (
-            <MoreVertical size={18} />
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <MoreVertical
+                    size={18}
+                    className="dark:text-gray-200 text-gray-400"
+                  />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>More options</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           )}
         </DropdownMenuTrigger>
         <DropdownMenuContent>

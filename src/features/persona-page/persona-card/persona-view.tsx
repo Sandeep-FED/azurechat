@@ -12,6 +12,12 @@ import {
   SheetTrigger,
 } from "../../ui/sheet";
 import { PersonaModel } from "../persona-services/models";
+import {
+  Tooltip,
+  TooltipProvider,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/ui/tooltip";
 
 interface Props {
   persona: PersonaModel;
@@ -22,9 +28,18 @@ export const ViewPersona: FC<Props> = (props) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant={"outline"} title="Show message">
-          <Info size={18} />
-        </Button>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button variant={"outline"}>
+                <Info size={18} />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>View persona details</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </SheetTrigger>
       <SheetContent className="min-w-[480px] sm:w-[540px]">
         <SheetHeader>

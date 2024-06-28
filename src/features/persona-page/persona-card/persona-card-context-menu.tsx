@@ -13,6 +13,12 @@ import {
 import { PersonaModel } from "../persona-services/models";
 import { DeletePersona } from "../persona-services/persona-service";
 import { personaStore } from "../persona-store";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/features/ui/tooltip";
 
 interface Props {
   persona: PersonaModel;
@@ -32,10 +38,19 @@ export const PersonaCardContextMenu: FC<Props> = (props) => {
           {isLoading ? (
             <LoadingIndicator isLoading={isLoading} />
           ) : (
-            <MoreVertical
-              size={18}
-              className="dark:text-gray-200 text-gray-400"
-            />
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <MoreVertical
+                    size={18}
+                    className="dark:text-gray-200 text-gray-400"
+                  />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>More options</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           )}
         </DropdownMenuTrigger>
         <DropdownMenuContent>
