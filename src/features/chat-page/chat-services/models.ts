@@ -34,6 +34,8 @@ export interface ChatThreadModel {
   personaMessageTitle: string;
   extension: string[];
   type: typeof CHAT_THREAD_ATTRIBUTE;
+  personaIcon: string;
+  personaShortDescription: string;
 }
 
 export interface UserPrompt {

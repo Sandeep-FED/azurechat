@@ -12,13 +12,6 @@ import {
   SheetTrigger,
 } from "../../ui/sheet";
 import { PersonaModel } from "../persona-services/models";
-import {
-  Tooltip,
-  TooltipProvider,
-  TooltipTrigger,
-  TooltipContent,
-} from "@/ui/tooltip";
-
 interface Props {
   persona: PersonaModel;
 }
