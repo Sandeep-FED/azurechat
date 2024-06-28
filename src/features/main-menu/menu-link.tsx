@@ -17,7 +17,9 @@ export const MenuLink: FC<MenuLinkProps> = (props) => {
     <Link
       className={cn(
         ButtonLinkVariant,
-        path.startsWith(props.href) && props.href !== "/" ? "text-primary" : ""
+        path.startsWith(props.href) && props.href !== "/"
+          ? "text-white bg-primary"
+          : "dark:text-white text-black"
       )}
       href={props.href}
       aria-label={props.ariaLabel}
