@@ -8,6 +8,7 @@ import {
   UpsertPersonaPin,
   UpsertPersona,
 } from "./persona-services/persona-service";
+import { InputImageStore } from "../ui/chat/chat-input-area/input-image-store";
 
 class PersonaState {
   private defaultModel: PersonaModel = {
@@ -38,6 +39,13 @@ class PersonaState {
       ...persona,
     };
     this.isOpened = true;
+    // Initialize the InputImageStore with the persona's existing image
+    if (persona.personaIcon) {
+      InputImageStore.previewImage = persona.personaIcon;
+      InputImageStore.base64Image = persona.personaIcon; // Clear any previous base64 image
+    } else {
+      InputImageStore.Reset();
+    }
   }
 
   public newPersona() {
@@ -51,12 +59,14 @@ class PersonaState {
     name: string;
     description: string;
     personaMessage: string;
+    personaIcon: string;
   }) {
     this.persona = {
       ...this.defaultModel,
       name: persona.name,
       description: persona.description,
       personaMessage: persona.personaMessage,
+      personaIcon: persona.personaIcon,
     };
     this.isOpened = true;
   }
@@ -112,7 +122,7 @@ export const FormDataToPersonaModel = (formData: FormData): PersonaModel => {
     isPublished: formData.get("isPublished") === "on" ? true : false,
     userId: "", // the user id is set on the server once the user is authenticated
     createdAt: new Date(),
-    personaIcon: formData.get("image-base64") as unknown as string,
+    personaIcon: formData.get("icon-image-base64") as unknown as string,
     isPinned: false,
     type: PERSONA_ATTRIBUTE,
   };

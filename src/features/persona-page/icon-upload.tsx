@@ -1,15 +1,26 @@
+import { FC, useEffect, useRef } from "react";
 import { Image as ImageIcon, X } from "lucide-react";
 import Image from "next/image";
-import { FC, useRef } from "react";
 import { Button } from "@/ui/button";
 import {
   InputImageStore,
   useInputImage,
 } from "@/ui/chat/chat-input-area/input-image-store";
 
-export const IconUpload: FC = () => {
-  const { base64Image, previewImage } = useInputImage();
+interface IconUploadProps {
+  iconUrl: string; // Added the iconUrl prop to receive the persona's icon URL
+}
+
+export const IconUpload: FC<IconUploadProps> = ({ iconUrl }) => {
+  const { previewImage, base64Image } = useInputImage();
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Use useEffect to set the initial preview image to the iconUrl
+  useEffect(() => {
+    if (iconUrl && previewImage !== iconUrl) {
+      InputImageStore.previewImage = iconUrl;
+    }
+  }, [iconUrl, previewImage]);
 
   const handleButtonClick = () => {
     if (fileInputRef.current) {
@@ -18,29 +29,18 @@ export const IconUpload: FC = () => {
     fileInputRef.current?.click();
   };
 
-  const resetFileInput = () => {
-    InputImageStore.Reset();
-  };
-
   return (
     <div className="flex gap-2">
       {previewImage && (
         <div className="relative overflow-hidden rounded-md w-[35px] h-[35px]">
           <Image src={previewImage} alt="Preview" fill={true} />
-          <button
-            className="absolute right-1 top-1 dark:bg-slate-100 bg-gray-500/50 rounded-full p-[2px]"
-            onClick={resetFileInput}
-            aria-label="Remove icon"
-          >
-            <X size={12} className="dark:stroke-black stroke-white" />
-          </button>
         </div>
       )}
       <>
         <input
           type="hidden"
-          name="image-base64"
-          value={base64Image}
+          name="icon-image-base64"
+          value={base64Image || (previewImage === iconUrl ? "" : base64Image)}
           onChange={(e) => InputImageStore.UpdateBase64Image(e.target.value)}
         />
         <input

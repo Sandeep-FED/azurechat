@@ -35,6 +35,7 @@ Expertise:
 Example:
 [Describe an example of the personality e.g. a Marketing copywriter who can write catchy headlines.]`,
               description: "",
+              personaIcon: "",
             })
           }
         />

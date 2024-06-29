@@ -93,7 +93,7 @@ export const AddNewPersona: FC<Props> = (props) => {
               )}
               <div className="grid gap-2">
                 <Label>Pick Icon</Label>
-                <IconUpload />
+                <IconUpload iconUrl={persona.personaIcon} />
               </div>
               <div className="grid gap-2">
                 <Label>Name</Label>
