@@ -64,7 +64,7 @@ export default function FAQPage() {
       <FAQHero />
       <Accordion
         type="multiple"
-        className="bg-black bg-opacity-40 border rounded-md w-full p-8 pl-10 mt-12"
+        className="bg-opacity-40 dark:bg-black dark:bg-opacity-40 bg-neutral-300   border rounded-md w-full p-8 pl-10 mt-12"
       >
         {faqs.map((faq, index) => (
           <AccordionItem value={`item-${index}`} className="" key={index}>

@@ -7,7 +7,7 @@ export default function TermsConditionsPage() {
     <>
       <TermsConditionsHero />
       <main className="w-full p-2 mt-12">
-        <div className="w-full bg-black bg-opacity-40 rounded-md p-8 pl-10 flex flex-col gap-8 mt-4 text-justify">
+        <div className="w-full dark:bg-black bg-neutral-300 dark:bg-opacity-40 bg-opacity-40 rounded-md p-8 pl-10 flex flex-col gap-8 mt-4 text-justify">
           {/* Introduction */}
           <div className="grid gap-4">
             <h1 className="text-2xl font-semibold">Introduction</h1>

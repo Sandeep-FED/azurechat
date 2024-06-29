@@ -93,7 +93,7 @@ export default function GetStartedPage() {
   return (
     <>
       <GetStartedHero />
-      <div className="max-w-full mx-auto mt-12 p-10 bg-black bg-opacity-40 rounded-md text-justify">
+      <div className="max-w-full mx-auto mt-12 p-10 bg-opacity-40 dark:bg-black  dark:bg-opacity-40 bg-neutral-300  rounded-md text-justify">
         {instructionsList.map((instruction, index) => (
           <div key={index} className="step mb-8">
             <div className="step-header flex items-center mb-2 gap-8">

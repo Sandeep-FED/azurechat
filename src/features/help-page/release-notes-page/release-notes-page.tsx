@@ -66,12 +66,15 @@ export default function ReleaseNotesPage() {
               <Badge className="text-white ml-4">
                 <p>v0.1.0-beta.1</p>
               </Badge>
-              <Badge variant="outline" className="ml-auto  border-white">
+              <Badge
+                variant="outline"
+                className="ml-auto dark:border-white border-gray-700"
+              >
                 <p>Released Date: 1/07/2024</p>
               </Badge>
             </div>
           </div>
-          <div className="w-full bg-black bg-opacity-40 rounded-md p-8 pl-10 flex flex-col gap-8 mt-4">
+          <div className="w-full dark:bg-black bg-neutral-300 dark:bg-opacity-40 bg-opacity-40 rounded-md p-8 pl-10 flex flex-col gap-8 mt-4">
             {features.map((feature) => (
               <div className="wrapper flex flex-col gap-2">
                 <h2>{feature.title}</h2>
