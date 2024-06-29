@@ -64,7 +64,7 @@ export default function ReleaseNotesPage() {
                 Initial Release
               </h1>
               <Badge className="text-white ml-4">
-                <p>v1.0</p>
+                <p>v0.1.0-beta.1</p>
               </Badge>
               <Badge variant="outline" className="ml-auto  border-white">
                 <p>Released Date: 1/07/2024</p>
