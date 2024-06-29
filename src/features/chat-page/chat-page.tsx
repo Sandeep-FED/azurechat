@@ -17,6 +17,7 @@ import {
 } from "./chat-services/models";
 import MessageContent from "./message-content";
 import { useTheme } from "next-themes";
+import { cn } from "../ui/lib";
 
 interface ChatPageProps {
   messages: Array<ChatMessageModel>;
@@ -59,35 +60,47 @@ export const ChatPage: FC<ChatPageProps> = (props) => {
       ? "/Intellient_Dark_Icon.png"
       : "/Intellient_Light_Icon.png";
 
+  console.log("chat page message", messages);
+
   return (
-    <main className="flex flex-1 relative flex-col">
+    <main
+      className={cn(
+        "flex flex-1 relative flex-col",
+        messages.length === 0 && "justify-center"
+      )}
+    >
       <ChatHeader
         chatThread={props.chatThread}
         chatDocuments={props.chatDocuments}
         extensions={props.extensions}
+        messages={messages}
       />
-      <ChatMessageContainer ref={current}>
-        <ChatMessageContentArea>
-          {messages.map((message) => {
-            return (
-              <ChatMessageArea
-                key={message.id}
-                profileName={message.name}
-                role={message.role}
-                onCopy={() => {
-                  navigator.clipboard.writeText(message.content);
-                }}
-                profilePicture={
-                  message.role === "assistant" ? botIcon : session?.user?.image
-                }
-              >
-                <MessageContent message={message} />
-              </ChatMessageArea>
-            );
-          })}
-          {loading === "loading" && <ChatLoading />}
-        </ChatMessageContentArea>
-      </ChatMessageContainer>
+      {messages.length > 1 && (
+        <ChatMessageContainer ref={current}>
+          <ChatMessageContentArea>
+            {messages.map((message) => {
+              return (
+                <ChatMessageArea
+                  key={message.id}
+                  profileName={message.name}
+                  role={message.role}
+                  onCopy={() => {
+                    navigator.clipboard.writeText(message.content);
+                  }}
+                  profilePicture={
+                    message.role === "assistant"
+                      ? botIcon
+                      : session?.user?.image
+                  }
+                >
+                  <MessageContent message={message} />
+                </ChatMessageArea>
+              );
+            })}
+            {loading === "loading" && <ChatLoading />}
+          </ChatMessageContentArea>
+        </ChatMessageContainer>
+      )}
       <ChatInput />
     </main>
   );
