@@ -54,7 +54,7 @@ export const AddPromptSlider: FC<SliderProps> = (props) => {
         <SheetHeader>
           <SheetTitle>Add New Prompt</SheetTitle>
         </SheetHeader>
-        <form action={formAction} className="flex-1 flex flex-col">
+        <form action={formAction} className="flex-1 flex flex-col mt-7">
           <ScrollArea
             className="flex-1 -mx-6 flex max-h-[calc(100vh-140px)]"
             type="always"

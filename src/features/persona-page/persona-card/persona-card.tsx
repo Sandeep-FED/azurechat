@@ -72,7 +72,7 @@ export const PersonaCard: FC<Props> = async (props) => {
       <CardContent className="text-muted-foreground flex-1 text-sm mt-4">
         <div>
           <CardTitle
-            className="flex-1 text-base"
+            className="flex-1 text-base mb-2"
             style={{ color: getRandomColor() }}
           >
             {persona.name}
