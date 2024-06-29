@@ -41,9 +41,9 @@ export const HelpToggle = () => {
             value="T&C"
             onClick={() => setTabvalue("T&C")}
             className="flex-1"
-            title="Terms & Conditions"
+            title="Terms of Use"
           >
-            Terms & Conditions
+            Terms of Use
           </TabsTrigger>
         </TabsList>
       </Tabs>
